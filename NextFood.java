@@ -80,7 +80,10 @@ public class NextFood {
                 }
                 if (loginSuccess == true) {
                     System.out.println("\n    Bem-vindo(a), " + username + "!");
-                    // TODO: Aqui você pode adicionar a lógica para acessar o sistema após o login bem-sucedido
+                    
+                    // TODO: Adicionar a lógica para acessar o sistema após o login bem-sucedido
+
+
                 } else {
                     System.out.println("\n    Acesso negado. Verifique seu nome de usuário e senha.");
                 }
@@ -106,6 +109,10 @@ public class NextFood {
                 users[userCount] = new UserModel(newUsername, newPassword, newEmail, newPassword);
                 userCount++;
                     System.out.println("\n    Conta criada com sucesso! Faça login para acessar o sistema.");
+
+                    // TODO: adicionar logica para enviar para o menu novamente após a criação do Usuario
+
+
                 break;
 
             default:
@@ -113,6 +120,7 @@ public class NextFood {
                 break;
         }       
 
+                // Colocar essa mesma logica mas aplicando a Herança de POO, *RestaurantModel Adiantada para aplicação dessa feature*
 
                     //Inicialização do menu de pedidos e restaurantes. 
                     System.out.println("\n             === MENU DE PEDIDOS ===     ");
