@@ -1,6 +1,6 @@
 import java.util.Scanner;
 
-import usermodel.ModelUser;
+import Models.UserModel;
 
 public class NextFood {
     //Cores ANSI para estilizar a saída no console
@@ -34,10 +34,10 @@ public class NextFood {
        
         
         //banco de dados simulado para armazenar as informações dos usuários cadastrados
-        ModelUser[] users = new ModelUser[100]; // Array para armazenar até 100 usuários
+        UserModel[] users = new UserModel[100]; // Array para armazenar até 100 usuários
         int userCount = 0; // Contador para o número de usuários cadastrados
         
-        ModelUser user1 = new ModelUser("Igor", "buceta6969", "bucetinhagames@gmail.com", "4002-8922");
+        UserModel user1 = new UserModel("Igor", "buceta6969", "bucetinhagames@gmail.com", "4002-8922");
         users[userCount] = user1;
         userCount++;
         
@@ -80,7 +80,7 @@ public class NextFood {
                 }
                 if (loginSuccess == true) {
                     System.out.println("\n    Bem-vindo(a), " + username + "!");
-                    // Aqui você pode adicionar a lógica para acessar o sistema após o login bem-sucedido
+                    // TODO: Aqui você pode adicionar a lógica para acessar o sistema após o login bem-sucedido
                 } else {
                     System.out.println("\n    Acesso negado. Verifique seu nome de usuário e senha.");
                 }
@@ -103,7 +103,7 @@ public class NextFood {
                 String newPassword = sc.nextLine();
                 System.out.println("──────────────────────────────────────────");
                 // Criar um novo usuário e armazenar no array
-                users[userCount] = new ModelUser(newUsername, newPassword, newEmail, newPassword);
+                users[userCount] = new UserModel(newUsername, newPassword, newEmail, newPassword);
                 userCount++;
                     System.out.println("\n    Conta criada com sucesso! Faça login para acessar o sistema.");
                 break;

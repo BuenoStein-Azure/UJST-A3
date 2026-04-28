@@ -1,11 +1,11 @@
-package usermodel;
-public class ModelUser {
+package Models;
+public class UserModel {
     private String username;
     private String password;
     private String email;
     private String phoneNumber;
 
-    public ModelUser(String username, String password, String email, String phoneNumber) {
+    public UserModel(String username, String password, String email, String phoneNumber) {
         this.username = username;
         this.password = password;
         this.email = email;
