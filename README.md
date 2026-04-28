@@ -21,4 +21,5 @@ Este repositório contém o desenvolvimento do projeto **NextFood**, elaborado c
 |------------|------|
 | Gabriel Teixeira Ricca  | 8261113738 |
 | Igor de Souza Bueno  | 8261107854 |
+| Ryan Gomes dos Santos  | 8261102012 |
 ---
