@@ -20,5 +20,5 @@ Este repositório contém o desenvolvimento do projeto **NextFood**, elaborado c
 | NOME   | RA |
 |------------|------|
 | Gabriel Teixeira Ricca  | 8261113738 |
-
+| Igor de Souza Bueno  | 8261107854 |
 ---
