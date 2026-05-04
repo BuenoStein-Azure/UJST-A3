@@ -1,14 +1,15 @@
 package Models;
 
 import java.util.List; 
+import Models.ProdutoModel;
 
 public class RestaurantModel {
     private String restaurantName;
     private String locate;
     private int phoneRestaurantNumber;
-    private List<String> catalogo;
+    private List<ProdutoModel> catalogo;
 
-    public RestaurantModel(String RestaurantName, String Locate, int phoneRestaurantNumber, List<String> catalogo){
+    public RestaurantModel(String RestaurantName, String Locate, int phoneRestaurantNumber, List<ProdutoModel> catalogo){
         this.restaurantName= RestaurantName;
         this.locate = Locate;
         this.phoneRestaurantNumber = phoneRestaurantNumber;
@@ -24,7 +25,7 @@ public class RestaurantModel {
     public int getphoneRestaurantNumber(){
         return phoneRestaurantNumber;
     }
-    public List<String> getcatalogo(){
+    public List<ProdutoModel> getcatalogo(){
         return catalogo;
     }
 
@@ -37,7 +38,7 @@ public class RestaurantModel {
     public void setphoneRestaurantNumber(int phoneRestaurantNumber){
         this.phoneRestaurantNumber = phoneRestaurantNumber;
     }
-    public void setcatalogo(List<String> catalogo){
+    public void setcatalogo(List<ProdutoModel> catalogo){
         this.catalogo = catalogo;
     }
     }

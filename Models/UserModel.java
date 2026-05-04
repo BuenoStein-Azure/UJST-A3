@@ -3,9 +3,9 @@ public class UserModel {
     private String username;
     private String password;
     private String email;
-    private String phoneNumber;
+    private double phoneNumber;
 
-    public UserModel(String username, String password, String email, String phoneNumber) {
+    public UserModel(String username, String password, String email, double phoneNumber) {
         this.username = username;
         this.password = password;
         this.email = email;
@@ -36,11 +36,11 @@ public class UserModel {
         this.email = email;
     }
 
-    public String getPhoneNumber() {
+    public double getPhoneNumber() {
         return phoneNumber;
     }
 
-    public void setPhoneNumber(String phoneNumber) {
+    public void setPhoneNumber(double phoneNumber) {
         this.phoneNumber = phoneNumber;
     }
     
