@@ -1,15 +1,19 @@
 package Models;
+import java.util.List;
+
 public class UserModel {
     private String username;
     private String password;
     private String email;
     private double phoneNumber;
+    private List<String> pedidos = null;
 
-    public UserModel(String username, String password, String email, double phoneNumber) {
+    public UserModel(String username, String password, String email, double phoneNumber, List<String> pedidos) {
         this.username = username;
         this.password = password;
         this.email = email;
         this.phoneNumber = phoneNumber;
+        this.pedidos = pedidos;
     }
 
     public String getUsername() {
@@ -42,6 +46,10 @@ public class UserModel {
 
     public void setPhoneNumber(double phoneNumber) {
         this.phoneNumber = phoneNumber;
+    }
+
+    public List<String> pedidos(){
+        return pedidos;
     }
     
 }
