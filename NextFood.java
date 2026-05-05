@@ -1,10 +1,5 @@
-import Models.ProdutoModel;
-import Models.RestaurantModel;
-import Models.UserModel;
-import Service.LoginService;
-import Service.MenuInicialService;
-import Service.MenuPedidosSevice;
-import Service.UserService;
+import Models.*;
+import Service.*;
 
 import java.util.List;
 import java.util.Scanner;
@@ -37,8 +32,7 @@ public class NextFood {
     public static void main(String[] args) {
         exibirBanner();
         Scanner sc = new Scanner(System.in);
-        LoginService loginService = new LoginService();
-        UserService userService = new UserService();
+       
         
         // Criação dos Restaurantes e seus respectivos cardápios utilizando a classe RestaurantModel e ProdutoModel
         RestaurantModel rest1 = new RestaurantModel("Mcdonald's", "Rua das Laranjeiras, 123", 40028922, null);
@@ -77,61 +71,12 @@ public class NextFood {
 
         
        
-        // Tela Inicial
-        System.out.println("\n      === BEM-VINDO AO NEXTFOOD ===     ");
-        System.out.println("──────────────────────────────────────────");
-        System.out.println("  O que deseja fazer?");
-        System.out.println("  1. Fazer login");
-        System.out.println("  2. Criar nova conta");
-        System.out.println("  3. Sair");
+        // Tela Entrada
+        MenuInicialService.exibirMenuEntrada();
+
+        System.out.print("\n    Escolha uma opção: ");
 
 
-        // Ver usarios no Banco de dados
-            
-    
-            System.out.print("\n    Escolha uma opção: ");
-
-
-        switch (sc.nextInt()) {
-            case 1:
-                // Tela de login verficada mas com erro de leitura do nome de usuário e senha, pois o nextInt() não consome a nova linha deixada no (), causando um comportamento inesperado. Para corrigir isso, é necessário adicionar um sc.nextLine() adicional após a leitura do número inteiro para consumir a nova linha.
-                
-                boolean logado = loginService.login();
-                if(logado == true) {
-                    System.out.println("\n  Estamos de Redirecionando para o Menu de Pedidos..."); 
-                    MenuPedidosSevice.exibirMenuPedidos();
-                    break;
-                } else {
-                    System.out.println("\n  Login falhou. Redirecionando para o menu inicial...");
-                    MenuInicialService.exibirMenuInicial();
-                    break;
-                }
-               
-                    
-            case 2:
-                // Tela de Cadastro
-                boolean registrado = userService.registerUser();
-                if(registrado == true) {
-                    System.out.println("\n  Estamos te Redirecionando para o menu inicial...");
-                    MenuInicialService.exibirMenuInicial();
-                    userService.listarUsuarios();
-                    
-                    break;
-
-                } else {
-                    System.out.println("\n  Registro falhou. Redirecionando para o menu inicial...");
-                    MenuInicialService.exibirMenuInicial();
-                    break;
-                }
-                
-
-            default:
-                System.out.println("\n    Opção inválida. Encerrando o programa.");
-                break;
-        }
-
-        
-            
 
         // Colocar essa mesma logica mas aplicando a Herança de POO, *RestaurantModel Adiantada para aplicação dessa feature*
         while (null != null) {

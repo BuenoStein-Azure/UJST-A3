@@ -37,7 +37,7 @@ public class UserService {
 
             boolean registerUser = false;
             if (userCount < MAX_USERS) {
-                users[userCount] = new UserModel(username, password, email, phoneNumber);
+                users[userCount] = new UserModel(username, password, email, phoneNumber,null);
                 userCount++;
                 System.out.println("\n    Usuário registrado com sucesso!");
                 return registerUser = true;
