@@ -4,8 +4,14 @@ import Service.*;
 import java.util.Scanner;
 
 public class MenuOpcaoService {
+    private MenuInicialService menuIS;
+    private MenuRestauranteService menuRS;
+    public MenuOpcaoService(MenuInicialService menuIS, MenuRestauranteService menuRS) {
+        this.menuIS = menuIS;
+        this.menuRS = menuRS;
+    }
     
-    public static void exibirMenu() {
+    public void exibirMenu() {
 
         Scanner sc = new Scanner(System.in);
 
@@ -17,7 +23,7 @@ public class MenuOpcaoService {
 
         switch (sc.nextInt()) {
             case 1:
-                MenuRestauranteService.Menu();
+                menuRS.Menu();
                 break;
             
             case 2:

@@ -7,11 +7,12 @@ import java.util.Scanner;
 
 
 public class MenuRestauranteService {
-    
-        
-    
-        
-        public static boolean Menu(){
+      
+    private ProdutoService produtoS;
+    public MenuRestauranteService(ProdutoService produtoS) {
+        this.produtoS = produtoS;
+    }
+        public void Menu(){
             Scanner sc = new Scanner(System.in);
             System.out.println("\n             === RESTAURANTES DISPONIVEIS ===     ");
             System.out.print("\n  1. Mcdonald's");
@@ -23,11 +24,11 @@ public class MenuRestauranteService {
             case 1:
                 System.out.println("\n    Você escolheu Mcdonald's!");
                 System.out.println("\n    Carregando menu do Macdonald's...");
-                ProdutoService.exibirCatalogoMcDonald();
+                produtoS.exibirCatalogoMcDonald();
                 // falta a logica de escolha do apartir do catalogo
-                return true;
+                break;
                 default:
-                    return true;
+                    break;
         }
         
     }

@@ -5,13 +5,14 @@ import java.util.List;
 import java.util.Scanner;
 
 public class NextFood {
+
     //Cores ANSI para estilizar a saída no console
     static final String RESET   = "\033[0m";
     static final String VERDE_ESCURO = "\033[1;32m";
     static final String AZUL    = "\033[36m";
     static final String BRANCO = "\033[97m";
-
-
+    
+    
 
 
 
@@ -32,8 +33,13 @@ public class NextFood {
     public static void main(String[] args) {
         exibirBanner();
         Scanner sc = new Scanner(System.in);
-       
-        
+        ProdutoService produtoS = new ProdutoService();
+        MenuRestauranteService menuRS = new MenuRestauranteService(produtoS);
+        UserService userS = new UserService();
+        LoginService loginS = new LoginService();
+        MenuOpcaoService menuOS = new MenuOpcaoService(menuRS);
+        MenuInicialService menuIS = new MenuInicialService(menuOS,userS,loginS);
+
         // Criação dos Restaurantes e seus respectivos cardápios utilizando a classe RestaurantModel e ProdutoModel
         RestaurantModel rest1 = new RestaurantModel("Mcdonald's", "Rua das Laranjeiras, 123", 40028922, null);
         RestaurantModel rest2 = new RestaurantModel("Pizza Hut", "Avenida dos Pizzaiolos, 456", 40028923, null);
@@ -72,7 +78,7 @@ public class NextFood {
         
        
         // Tela Entrada
-        MenuInicialService.exibirMenuEntrada();
+        
 
         System.out.print("\n    Escolha uma opção: ");
 
