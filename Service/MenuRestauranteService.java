@@ -31,8 +31,56 @@ public class MenuRestauranteService {
                     
                         
                         case 1:
-                         System.out.println("\n    Você escolheu o BigMac!");    
-                        System.out.println("\n    Oque deseja fazer agora? (1 - Escolher mais produtos desse restaurante / 2 - Escolher outro restaurante / 3 - Finalizar compra)");
+                            // Pergunta se o usuario quer mais quantidade do mesmo produto, ou se quer escolher outro restaurante ou finalizar a compra
+                        System.out.println("\n    Você escolheu o BigMac!"); 
+                        // System.out.println("\n Quanto bigmacs você deseja? ");
+                        // Lógica para adicionar o produto ao carrinho com a quantidade escolhida pelo usuário
+                        // int quantidade = sc.nextInt();
+                        // ProdutoModel produto = RestaurantService.getRest1().getcatalogo().get(opcaoProduto - 1);
+                        // CarrinhoService carrinhoService = new CarrinhoService(UserService.currentUser, produto);
+                        // carrinhoService.adicionarAoCarrinho(produto, RestaurantService.getRest1(), quantidade);
+                        
+                        // fazer uma logica para chamar :
+                        /*
+                        System.out.println("\n    Oque deseja fazer agora?");
+                        System.out.println("\n (1 - Escolher mais produtos desse restaurante");
+                        System.out.println("\n (2 - Escolher outro restaurante)");
+                        System.out.println("\n (3 - Finalizar compra)");
+                         switch (sc.nextInt()) {
+                                case 1:
+                                    System.out.println("\n    Voltando para o catalogo...");
+                        
+                                    ProdutoModel produto = RestaurantService.getRest1().getcatalogo().get(opcaoProduto - 1);
+                                    CarrinhoService carrinhoService = new CarrinhoService(UserService.currentUser, produto);
+                                    carrinhoService.adicionarAoCarrinho(produto, RestaurantService.getRest1());
+                                    RestaurantService.exibirCatalogoMcDonald();
+                                    break;
+                                case 2:
+                                    System.out.println("\n    Voltando para o menu de restaurantes...");
+                                    Menu();
+                                     produto = RestaurantService.getRest1().getcatalogo().get(opcaoProduto - 1);
+                                     carrinhoService = new CarrinhoService(UserService.currentUser, produto);
+                                    break;
+                                case 3:
+                                    produto = RestaurantService.getRest1().getcatalogo().get(opcaoProduto - 1);
+                                    carrinhoService = new CarrinhoService(UserService.currentUser, produto);
+                                    carrinhoService.finalizarCompra();
+                                    break;
+                            
+                                default:
+                                    System.out.println("\n    Opção inválida!");
+                                    break;
+
+                            }
+                                    evitando assim boiler-plate, deixando codigo mais limpo e organizado, facilitando assim 
+                                    a manutenção ou futuras alterações no codigo
+                        */
+
+
+                         System.out.println("\n    Oque deseja fazer agora?");
+                        System.out.println("\n (1 - Escolher mais produtos desse restaurante");
+                        System.out.println("\n (2 - Escolher outro restaurante)");
+                        System.out.println("\n (3 - Finalizar compra)");
                             switch (sc.nextInt()) {
                                 case 1:
                                     System.out.println("\n    Voltando para o catalogo...");

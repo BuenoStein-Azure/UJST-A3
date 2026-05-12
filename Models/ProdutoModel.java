@@ -2,11 +2,12 @@ package Models;
 public class ProdutoModel {
     String nome;
     double preco;
-
+    int quantidade;
     //construir produto
-    public ProdutoModel(String nome, double preco) {
+    public ProdutoModel(String nome, double preco, int quantidade) {
         this.nome = nome;
         this.preco = preco;
+        this.quantidade = quantidade;
     }
 
     public String getNome(){
@@ -21,5 +22,10 @@ public class ProdutoModel {
     public void setPreco(double preco){
         this.preco = preco;
     }
-
+    public int getQuantidade(){
+        return quantidade;
+    }
+    public void setQuantidade(int quantidade){
+        this.quantidade = quantidade;
+    }
 }
