@@ -10,7 +10,7 @@ public class RestaurantService {
     
     
 
-    // adicionando todos os restaurantes e seus cardápios em um repositório chamado CarteItem, para facilitar o acesso aos dados dos restaurantes e seus produtos. Dessa forma, o repositório CarteItem pode ser utilizado para armazenar e acessar as informações dos restaurantes e seus cardápios de forma centralizada. E como é um repositório estático, ele é compartilhado por todas as instâncias da classe RestaurantService, ou seja, os dados dos restaurantes e seus cardápios são acessíveis a partir de qualquer instância da classe RestaurantService, sem a necessidade de criar uma nova instância para acessar os dados.
+    // adicionando todos os restaurantes e seus cardápios em um repositório chamado ProdutosERestaurant, para facilitar o acesso aos dados dos restaurantes e seus produtos. Dessa forma, o repositório ProdutosERestaurant pode ser utilizado para armazenar e acessar as informações dos restaurantes e seus cardápios de forma centralizada. E como é um repositório estático, ele é compartilhado por todas as instâncias da classe RestaurantService, ou seja, os dados dos restaurantes e seus cardápios são acessíveis a partir de qualquer instância da classe RestaurantService, sem a necessidade de criar uma nova instância para acessar os dados.
     
     
     
@@ -21,30 +21,30 @@ public class RestaurantService {
         // Criação dos Restaurantes e seus respectivos cardápios utilizando a classe RestaurantModel e ProdutoModel
          rest1 = new RestaurantModel("Mcdonald's", "Rua das Laranjeiras, 123", 40028922,null);
          rest1.setcatalogo(List.of(
-            new ProdutoModel("1. BigMac", 25.0),
-            new ProdutoModel("2. McQuarteirão", 28.0),
-            new ProdutoModel("3. McChicken", 22.0),
-            new ProdutoModel("4. McCheddar", 30.0)
+            new ProdutoModel("1. BigMac", 25.0, 10),
+            new ProdutoModel("2. McQuarteirão", 28.0, 10),
+            new ProdutoModel("3. McChicken", 22.0, 10),
+            new ProdutoModel("4. McCheddar", 30.0, 10)
         ));
 
          rest2 = new RestaurantModel("Pizza Hut", "Avenida dos Pizzaiolos, 456", 40028923, null);
          rest2.setcatalogo(List.of(
-            new ProdutoModel("1. Pizza Margherita", 35.0),
-            new ProdutoModel("2. Pizza Pepperoni", 40.0),
-            new ProdutoModel("3. Pizza Vegetariana", 30.0)
+            new ProdutoModel("1. Pizza Margherita", 35.0, 10),
+            new ProdutoModel("2. Pizza Pepperoni", 40.0, 10),
+            new ProdutoModel("3. Pizza Vegetariana", 30.0, 10)
         ));
 
          rest3 = new RestaurantModel("Mania de Churrasco", "Rua do Churrasco, 789", 40028924, null);
          rest3.setcatalogo(List.of(
-            new ProdutoModel("1. Churrasco de Frango", 25.0),
-            new ProdutoModel("2. Churrasco de Carne", 30.0),
-            new ProdutoModel("3. Churrasco de Linguiça", 20.0)
+            new ProdutoModel("1. Churrasco de Frango", 25.0, 10),
+            new ProdutoModel("2. Churrasco de Carne", 30.0, 10),
+            new ProdutoModel("3. Churrasco de Linguiça", 20.0, 10)
         ));
          rest4 = new RestaurantModel("Burguer King", "Avenida dos Burgers, 321", 40028925, null);
          rest4.setcatalogo(List.of(
-            new ProdutoModel("1. Whopper", 25.0),
-            new ProdutoModel("2. Big King", 30.0),
-            new ProdutoModel("3. Chicken King", 22.0)
+            new ProdutoModel("1. Whopper", 25.0, 10),
+            new ProdutoModel("2. Big King", 30.0, 10),
+            new ProdutoModel("3. Chicken King", 22.0, 10)
         ));
     }
     public static RestaurantModel getRest1() {
@@ -69,7 +69,7 @@ public class RestaurantService {
             + rest1.getphoneRestaurantNumber());
         
         for(ProdutoModel produto: rest1.getcatalogo()){
-            System.out.println(produto.getNome()+ " - R$ " + produto.getPreco());
+            System.out.println(produto.getNome()+ " - R$ " + produto.getPreco() + " - Quantidade: " + produto.getQuantidade());
         }
     }
     public static void exibirCatalogoPizzaHut() {
@@ -78,7 +78,7 @@ public class RestaurantService {
             + rest2.getphoneRestaurantNumber());
         
         for (ProdutoModel produto : rest2.getcatalogo()) {
-            System.out.println(produto.getNome() + " - R$ " + produto.getPreco());
+            System.out.println(produto.getNome() + " - R$ " + produto.getPreco() + " - Quantidade: " + produto.getQuantidade());
         }
     }
     
@@ -88,7 +88,7 @@ public class RestaurantService {
             + rest3.getphoneRestaurantNumber());
         
         for (ProdutoModel produto : rest3.getcatalogo()) {
-            System.out.println(produto.getNome() + " - R$ " + produto.getPreco());
+            System.out.println(produto.getNome() + " - R$ " + produto.getPreco() + " - Quantidade: " + produto.getQuantidade());
         }
     }
     
@@ -98,7 +98,7 @@ public class RestaurantService {
             + rest4.getphoneRestaurantNumber());
         
         for (ProdutoModel produto : rest4.getcatalogo()) {
-            System.out.println(produto.getNome() + " - R$ " + produto.getPreco());
+            System.out.println(produto.getNome() + " - R$ " + produto.getPreco() + " - Quantidade: " + produto.getQuantidade());
         }
     }
 }

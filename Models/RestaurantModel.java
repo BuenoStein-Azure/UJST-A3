@@ -1,7 +1,7 @@
 package Models;
 
 import java.util.List; 
-import Models.ProdutoModel;
+
 
 public class RestaurantModel {
     private String restaurantName;
