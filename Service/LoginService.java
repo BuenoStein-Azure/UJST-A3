@@ -25,6 +25,7 @@ public class LoginService {
                 boolean loginSuccess = false;
                 for (int i = 0; i < UserService.userCount; i++) {
                     if (users[i].getUsername().equals(username) && users[i].getPassword().equals(password)) {
+                        UserService.currentUser = users[i]; // Armazena o usuário logado
                         loginSuccess = true;
                         break;
                     }

@@ -21,4 +21,5 @@ public class ProdutoModel {
     public void setPreco(double preco){
         this.preco = preco;
     }
+
 }

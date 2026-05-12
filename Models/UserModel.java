@@ -6,14 +6,17 @@ public class UserModel {
     private String password;
     private String email;
     private double phoneNumber;
-    private List<String> pedidos = null;
+    private List<ProdutosERestaurant> carrinho = null;
+    private List<Object> metodoPagamento = null;
 
-    public UserModel(String username, String password, String email, double phoneNumber, List<String> pedidos) {
+    public UserModel(String username, String password, String email, double phoneNumber, List<ProdutosERestaurant> carrinho, List<Object> metodoPagamento) {
         this.username = username;
         this.password = password;
         this.email = email;
         this.phoneNumber = phoneNumber;
-        this.pedidos = pedidos;
+        this.carrinho = carrinho;
+        this.metodoPagamento = metodoPagamento;
+
     }
 
     public String getUsername() {
@@ -48,8 +51,17 @@ public class UserModel {
         this.phoneNumber = phoneNumber;
     }
 
-    public List<String> pedidos(){
-        return pedidos;
+    public List<ProdutosERestaurant> getCarrinho(){
+        return carrinho;
+    }
+    public void setCarrinho(List<ProdutosERestaurant> carrinho){
+        this.carrinho = carrinho;
+    }
+    public List<Object> getMetodoPagamento() {
+        return metodoPagamento;
+    }
+    public void setMetodoPagamento(List<Object> metodoPagamento) {
+        this.metodoPagamento = metodoPagamento;
     }
     
 }

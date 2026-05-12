@@ -6,10 +6,11 @@ import java.util.Scanner;
 
 public class MenuInicialService {
 
-    public static boolean exibirMenuEntrada() {
+    public boolean exibirMenuEntrada() {
         Scanner sc = new Scanner(System.in);
         LoginService loginService = new LoginService();
         UserService userService = new UserService();
+
         System.out.println("\n      === BEM-VINDO AO NEXTFOOD ===     ");
         System.out.println("──────────────────────────────────────────");
         System.out.println("  O que deseja fazer?");
@@ -22,7 +23,8 @@ public class MenuInicialService {
                 boolean logado = loginService.login();
                 if(logado == true) {
                     System.out.println("\n  Estamos de Redirecionando para o Menu de Opcões..."); 
-                    MenuOpcaoService.exibirMenu();
+                    MenuOpcaoService menuOpcaoService = new MenuOpcaoService(new RestaurantService());
+                    menuOpcaoService.exibirMenu();
                     return true;
                     
                 } else {
