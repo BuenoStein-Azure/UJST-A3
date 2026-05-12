@@ -4,17 +4,14 @@ import Service.*;
 import java.util.Scanner;
 
 public class MenuOpcaoService {
-    private MenuInicialService menuIS;
-    private MenuRestauranteService menuRS;
-    public MenuOpcaoService(MenuInicialService menuIS, MenuRestauranteService menuRS) {
-        this.menuIS = menuIS;
-        this.menuRS = menuRS;
+
+    private RestaurantService restaurantService;
+    public MenuOpcaoService(RestaurantService restaurantService) {
+        this.restaurantService = restaurantService;
     }
-    
     public void exibirMenu() {
-
         Scanner sc = new Scanner(System.in);
-
+       
         System.out.println("\n    Oque deseja fazer?");
         System.out.println("    1. Fazer um pedido");
         System.out.println("    2. Ver meus pedidos");
@@ -23,7 +20,8 @@ public class MenuOpcaoService {
 
         switch (sc.nextInt()) {
             case 1:
-                menuRS.Menu();
+                MenuRestauranteService menuRestauranteService = new MenuRestauranteService(new RestaurantService());
+                menuRestauranteService.Menu();
                 break;
             
             case 2:

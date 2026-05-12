@@ -13,6 +13,7 @@ public class UserService {
         public static final int MAX_USERS = 100;
         public static UserModel[] users = new UserModel[MAX_USERS];
         public static int userCount = 0;   
+        public static UserModel currentUser;
         
         Scanner sc = new Scanner(System.in);
 
@@ -37,9 +38,10 @@ public class UserService {
 
             boolean registerUser = false;
             if (userCount < MAX_USERS) {
-                users[userCount] = new UserModel(username, password, email, phoneNumber,null);
+                users[userCount] = new UserModel(username, password, email, phoneNumber,null,null);
                 userCount++;
                 System.out.println("\n    Usuário registrado com sucesso!");
+                currentUser = users[userCount - 1]; // Set the current user
                 return registerUser = true;
                 
             } else {
@@ -53,5 +55,5 @@ public class UserService {
                 System.out.println("    " + users[i].getUsername() + " - " + users[i].getEmail() + " - " + users[i].getPhoneNumber());
             }
         }
-         
+                 
 }

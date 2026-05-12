@@ -41,4 +41,5 @@ public class RestaurantModel {
     public void setcatalogo(List<ProdutoModel> catalogo){
         this.catalogo = catalogo;
     }
+
     }
