@@ -1,7 +1,6 @@
 package Service;
 import java.util.Scanner;
 import Models.*;
-import Service.*;
 import java.util.List;
 import java.util.ArrayList;
 public class MetodosDePagamento {
@@ -20,6 +19,7 @@ public class MetodosDePagamento {
         System.out.println("\n    Digite o código de segurança do cartão: ");
         String codigoSeguranca = sc.nextLine();
         System.out.println("──────────────────────────────────────────");
+        sc.close();
         // Aqui você pode adicionar a lógica para salvar o cartão de débito, como associá-lo ao usuário logado
         UserModel user = UserService.currentUser; // Obtém o usuário atualmente logado
 
@@ -53,6 +53,7 @@ public class MetodosDePagamento {
         System.out.println("\n    Digite o código de segurança do cartão: ");
         String codigoSeguranca = sc.nextLine();
         System.out.println("──────────────────────────────────────────");
+        sc.close();
         // Aqui você pode adicionar a lógica para salvar o cartão de crédito, como associá-lo ao usuário logado
         UserModel user = UserService.currentUser; // Obtém o usuário atualmente logado
 

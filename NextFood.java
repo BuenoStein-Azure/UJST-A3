@@ -1,8 +1,7 @@
-import Models.*;
+
 import Service.*;
 
-import java.util.List;
-import java.util.Scanner;
+
 
 public class NextFood {
     //Cores ANSI para estilizar a saída no console
@@ -31,7 +30,6 @@ public class NextFood {
     }
     public static void main(String[] args) {
         exibirBanner();
-        Scanner sc = new Scanner(System.in);
         
        
         // Tela Entrada

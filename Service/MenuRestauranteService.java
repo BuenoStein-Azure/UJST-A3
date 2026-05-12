@@ -1,5 +1,4 @@
 package Service;
-import Service.*;
 import Models.*;
 
 
@@ -26,7 +25,7 @@ public class MenuRestauranteService {
             case 1:
                 System.out.println("\n    Você escolheu Mcdonald's!");
                 System.out.println("\n    Carregando menu do Macdonald's...");
-                restaurantService.exibirCatalogoMcDonald();
+                RestaurantService.exibirCatalogoMcDonald();
                 int opcaoProduto = sc.nextInt();
                 switch (opcaoProduto) {
                     
@@ -38,21 +37,21 @@ public class MenuRestauranteService {
                                 case 1:
                                     System.out.println("\n    Voltando para o catalogo...");
                         
-                                    ProdutoModel produto = restaurantService.getRest1().getcatalogo().get(opcaoProduto - 1);
+                                    ProdutoModel produto = RestaurantService.getRest1().getcatalogo().get(opcaoProduto - 1);
                                     CarrinhoService carrinhoService = new CarrinhoService(UserService.currentUser, produto);
-                                    carrinhoService.adicionarAoCarrinho(produto, restaurantService.getRest1());
-                                    restaurantService.exibirCatalogoMcDonald();
+                                    carrinhoService.adicionarAoCarrinho(produto, RestaurantService.getRest1());
+                                    RestaurantService.exibirCatalogoMcDonald();
                                     break;
                                 case 2:
                                     System.out.println("\n    Voltando para o menu de restaurantes...");
                                     Menu();
-                                     produto = restaurantService.getRest1().getcatalogo().get(opcaoProduto - 1);
+                                     produto = RestaurantService.getRest1().getcatalogo().get(opcaoProduto - 1);
                                      carrinhoService = new CarrinhoService(UserService.currentUser, produto);
                                     break;
                                 case 3:
-                                    produto = restaurantService.getRest1().getcatalogo().get(opcaoProduto - 1);
+                                    produto = RestaurantService.getRest1().getcatalogo().get(opcaoProduto - 1);
                                     carrinhoService = new CarrinhoService(UserService.currentUser, produto);
-                                    carrinhoService.adicionarAoCarrinho(produto, restaurantService.getRest1());
+                                    carrinhoService.adicionarAoCarrinho(produto, RestaurantService.getRest1());
                                     carrinhoService.finalizarCompra();
                                     break;
                             
@@ -70,7 +69,7 @@ public class MenuRestauranteService {
             case 2:
                 System.out.println("\n    Você escolheu Pizza Hut!");
                 System.out.println("\n    Carregando menu da Pizza Hut...");
-                restaurantService.exibirCatalogoPizzaHut();
+                RestaurantService.exibirCatalogoPizzaHut();
                 opcaoProduto = sc.nextInt();
                 switch (opcaoProduto) {
                     case 1:
@@ -80,15 +79,15 @@ public class MenuRestauranteService {
                                 case 1:
                                     System.out.println("\n    Voltando para o catalogo...");
                         
-                                    ProdutoModel produto = restaurantService.getRest2().getcatalogo().get(opcaoProduto - 1);
+                                    ProdutoModel produto = RestaurantService.getRest2().getcatalogo().get(opcaoProduto - 1);
                                     CarrinhoService carrinhoService = new CarrinhoService(UserService.currentUser, produto);
-                                    carrinhoService.adicionarAoCarrinho(produto, restaurantService.getRest2());
-                                    restaurantService.exibirCatalogoPizzaHut();
+                                    carrinhoService.adicionarAoCarrinho(produto, RestaurantService.getRest2());
+                                    RestaurantService.exibirCatalogoPizzaHut();
                                     break;
                                 case 2:
-                                    produto = restaurantService.getRest2().getcatalogo().get(opcaoProduto - 1);
+                                    produto = RestaurantService.getRest2().getcatalogo().get(opcaoProduto - 1);
                                     carrinhoService = new CarrinhoService(UserService.currentUser, produto);
-                                    carrinhoService.adicionarAoCarrinho(produto, restaurantService.getRest2());
+                                    carrinhoService.adicionarAoCarrinho(produto, RestaurantService.getRest2());
                                     carrinhoService.finalizarCompra();
                                     break;
                             
@@ -106,7 +105,7 @@ public class MenuRestauranteService {
             case 3:
                 System.out.println("\n    Você escolheu Burger King!");
                 System.out.println("\n    Carregando menu do Burger King...");
-                restaurantService.exibirCatalogoBurgerKing();
+                RestaurantService.exibirCatalogoBurgerKing();
                 opcaoProduto = sc.nextInt();
                 switch (opcaoProduto) {
                     case 1:
@@ -116,15 +115,15 @@ public class MenuRestauranteService {
                                 case 1:
                                     System.out.println("\n    Voltando para o catalogo...");
                         
-                                    ProdutoModel produto = restaurantService.getRest4().getcatalogo().get(opcaoProduto - 1);
+                                    ProdutoModel produto = RestaurantService.getRest4().getcatalogo().get(opcaoProduto - 1);
                                     CarrinhoService carrinhoService = new CarrinhoService(UserService.currentUser, produto);
-                                    carrinhoService.adicionarAoCarrinho(produto, restaurantService.getRest4());
-                                    restaurantService.exibirCatalogoBurgerKing();
+                                    carrinhoService.adicionarAoCarrinho(produto, RestaurantService.getRest4());
+                                    RestaurantService.exibirCatalogoBurgerKing();
                                     break;
                                 case 2:
-                                    produto = restaurantService.getRest4().getcatalogo().get(opcaoProduto - 1);
+                                    produto = RestaurantService.getRest4().getcatalogo().get(opcaoProduto - 1);
                                     carrinhoService = new CarrinhoService(UserService.currentUser, produto);
-                                    carrinhoService.adicionarAoCarrinho(produto, restaurantService.getRest4());
+                                    carrinhoService.adicionarAoCarrinho(produto, RestaurantService.getRest4());
                                     carrinhoService.finalizarCompra();
                                     break;
                             
@@ -138,7 +137,7 @@ public class MenuRestauranteService {
             case 4:
                 System.out.println("\n    Você escolheu Mania de Churrasco!");
                 System.out.println("\n    Carregando menu do Mania de Churrasco...");
-                restaurantService.exibirCatalogoManiaChurrasco();
+                RestaurantService.exibirCatalogoManiaChurrasco();
                  opcaoProduto = sc.nextInt();
                 switch (opcaoProduto) {
                     case 1:
@@ -148,15 +147,15 @@ public class MenuRestauranteService {
                                 case 1:
                                     System.out.println("\n    Voltando para o catalogo...");
                         
-                                    ProdutoModel produto = restaurantService.getRest3().getcatalogo().get(opcaoProduto - 1);
+                                    ProdutoModel produto = RestaurantService.getRest3().getcatalogo().get(opcaoProduto - 1);
                                     CarrinhoService carrinhoService = new CarrinhoService(UserService.currentUser, produto);
-                                    carrinhoService.adicionarAoCarrinho(produto, restaurantService.getRest3());
-                                    restaurantService.exibirCatalogoManiaChurrasco();
+                                    carrinhoService.adicionarAoCarrinho(produto, RestaurantService.getRest3());
+                                    RestaurantService.exibirCatalogoManiaChurrasco();
                                     break;
                                 case 2:
-                                    produto = restaurantService.getRest3().getcatalogo().get(opcaoProduto - 1);
+                                    produto = RestaurantService.getRest3().getcatalogo().get(opcaoProduto - 1);
                                     carrinhoService = new CarrinhoService(UserService.currentUser, produto);
-                                    carrinhoService.adicionarAoCarrinho(produto, restaurantService.getRest3());
+                                    carrinhoService.adicionarAoCarrinho(produto, RestaurantService.getRest3());
                                     carrinhoService.finalizarCompra();
                                     break;
                             
@@ -179,6 +178,7 @@ public class MenuRestauranteService {
 
         
     }
+    sc.close();
 }
 }}}
  

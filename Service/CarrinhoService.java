@@ -1,6 +1,5 @@
 package Service;
 import Models.*;
-import Service.*;
 
 import java.util.List;
 import java.util.ArrayList;
@@ -17,7 +16,7 @@ public class CarrinhoService {
         
     }
 
-    public void adicionarAoCarrinho(ProdutoModel produto, RestaurantModel restaurant){ {
+    public void adicionarAoCarrinho( ProdutoModel produto, RestaurantModel restaurant){ {
         
          user = UserService.currentUser; // Obtém o usuário atualmente logado
         if (user == null) {
