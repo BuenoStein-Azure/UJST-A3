@@ -1,6 +1,5 @@
 package Service;
-import Models.*;
-import Service.*;
+
 
 import java.util.Scanner;
 
@@ -25,10 +24,12 @@ public class MenuInicialService {
                     System.out.println("\n  Estamos de Redirecionando para o Menu de Opcões..."); 
                     MenuOpcaoService menuOpcaoService = new MenuOpcaoService(new RestaurantService());
                     menuOpcaoService.exibirMenu();
+                    sc.close();
                     return true;
                     
                 } else {
                     System.out.println("\n  Login falhou. Redirecionando para o menu inicial...");
+                    sc.close();
                     return  exibirMenuEntrada();
                     
                 }
@@ -40,21 +41,28 @@ public class MenuInicialService {
                     System.out.println("\n  Estamos te Redirecionando para o menu inicial...");
                     exibirMenuEntrada();
                     userService.listarUsuarios();
+                    sc.close();
                     return true;
 
                 } else {
                     System.out.println("\n  Registro falhou. Redirecionando para o menu inicial...");
+                    sc.close();
                     return exibirMenuEntrada();
                     
                 }
             case 3:
                 System.out.println("\n Obrigado por usar nosso app!");
+                sc.close();
                 return false;
 
             default:
                 System.out.println("\n    Opção inválida. Encerrando o programa.");
+                sc.close();
                 return false;
+                
         }
+       
     }
+    
     
 }

@@ -1,6 +1,4 @@
 package Service;
-import Models.*;
-import Service.*;
 import java.util.Scanner;
 
 public class MenuOpcaoService {
@@ -34,6 +32,7 @@ public class MenuOpcaoService {
             default:
                 break;
         }
-        
+        sc.close();    
     }
+    
 }

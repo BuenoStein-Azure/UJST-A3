@@ -1,6 +1,5 @@
 package Service;
 import Models.*;
-import Service.*;
 import java.util.List;
 public class RestaurantService {
     private static RestaurantModel rest1;
