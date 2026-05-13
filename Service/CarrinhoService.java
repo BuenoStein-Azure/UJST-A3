@@ -48,8 +48,9 @@ public class CarrinhoService {
         // Tela de Pagamento
         System.out.println("\n     === ÁREA DE PAGAMENTO ===     ");
         System.out.println("──────────────────────────────────────────");
-        System.out.print("\n Qual é a forma de pagamento? (1 - Cartão de Crédito / 2 - Boleto / 3 - Pix): ");
-        // aqui você pode adicionar a lógica para processar a escolha do método de pagamento, como
+        System.out.print("\n Qual é a forma de pagamento? (1 - Cartão de Débito / 2 - Cartão de Crédito / 3 - Pix / 4 - VR/VA): ");
+    
+    
         switch (sc.nextInt()) {
             case 1:
                 System.out.println("\n    Você escolheu pagar com Cartão de Debito.");
@@ -204,21 +205,12 @@ public class CarrinhoService {
                             }
                                     break;
                         case 3:
-                            System.out.println("\n    Você escolheu pagar com Pix.");
-                            // pix não precisa entrar no metodo de pagamento pq o pix é instantaneo.
-                            System.out.println("\n     Copie e Cole no seu aplicativo do banco essa chave:");
-                            // Fazer um codigo onde gera uma chave pix aleatoria a cada ves que o usuario escolhe pagar com pix
-                            
-                            // Logica aqui
-
-
-                            // deixei esse valor padrão mas retire quando adicionar a logica pra gerar a chave pix aleatoria
-                            String chavePix = "123e4567-e89b-12d3-a456-426614174000"; // Exemplo de chave Pix
-                            System.out.println("\n     Chave Pix: " + chavePix);
-                            System.out.println("\n    Finalizando compra com Pix...");
-                            System.out.println("\n    Método de pagamento cadastrado: " + user.getMetodoPagamento());
+                            System.out.println("\n    Você escolheu pagar com Pix");
+                            GeradorPixService geradorPixService = new GeradorPixService();
+                            geradorPixService.gerarChavePix(); 
+                            System.out.println("\n  Pagamento com Pix realizado com sucesso!");
                             System.out.println("\n    Valor total da compra: R$ " + user.getCarrinho().stream().flatMap(c -> c.getProdutos().stream()).mapToDouble(ProdutoModel::getPreco).sum());
-                            
+                           
                             break;
                         default:
                             System.out.println("\n    Opção inválida!");
