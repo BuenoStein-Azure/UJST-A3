@@ -7,8 +7,8 @@ public class MenuInicialService {
 
     public boolean exibirMenuEntrada() {
         Scanner sc = new Scanner(System.in);
-        LoginService loginService = new LoginService();
-        UserService userService = new UserService();
+        AutenticacaoService loginService = new AutenticacaoService();
+        UsuarioService userService = new UsuarioService();
 
         System.out.println("\n      === BEM-VINDO AO NEXTFOOD ===     ");
         System.out.println("──────────────────────────────────────────");
@@ -22,7 +22,7 @@ public class MenuInicialService {
                 boolean logado = loginService.login();
                 if(logado == true) {
                     System.out.println("\n  Estamos de Redirecionando para o Menu de Opcões..."); 
-                    MenuOpcaoService menuOpcaoService = new MenuOpcaoService(new RestaurantService());
+                    MenuOpcaoService menuOpcaoService = new MenuOpcaoService(new RestauranteService());
                     menuOpcaoService.exibirMenu();
                     sc.close();
                     return true;

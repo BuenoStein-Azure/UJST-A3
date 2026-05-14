@@ -3,8 +3,8 @@ import java.util.Scanner;
 
 public class MenuOpcaoService {
 
-    private RestaurantService restaurantService;
-    public MenuOpcaoService(RestaurantService restaurantService) {
+    private RestauranteService restaurantService;
+    public MenuOpcaoService(RestauranteService restaurantService) {
         this.restaurantService = restaurantService;
     }
     public void exibirMenu() {
@@ -18,7 +18,7 @@ public class MenuOpcaoService {
 
         switch (sc.nextInt()) {
             case 1:
-                MenuRestauranteService menuRestauranteService = new MenuRestauranteService(new RestaurantService());
+                MenuRestauranteService menuRestauranteService = new MenuRestauranteService(new RestauranteService());
                 menuRestauranteService.Menu();
                 break;
             

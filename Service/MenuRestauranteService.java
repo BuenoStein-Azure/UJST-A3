@@ -1,13 +1,13 @@
 package Service;
 import Models.*;
 
-
+import java.util.List;
 import java.util.Scanner;
 
 
 public class MenuRestauranteService {
-    private RestaurantService restaurantService; 
-    public MenuRestauranteService(RestaurantService restaurantService) {
+    private RestauranteService restaurantService; 
+    public MenuRestauranteService(RestauranteService restaurantService) {
         this.restaurantService = restaurantService;
     }
 
@@ -15,218 +15,108 @@ public class MenuRestauranteService {
         
         public void Menu(){
             Scanner sc = new Scanner(System.in);
-            System.out.println("\n             === RESTAURANTES DISPONIVEIS ===     ");
-            System.out.print("\n  1. Mcdonald's");
-            System.out.print("\n  2. Pizza Hut");
-            System.out.print("\n  3. Mania de Churrasco");
-            System.out.print("\n  4. Burguer King ");
-            System.out.print("\n  Digite a opção do restaurante: ");
-        switch(sc.nextInt()){
-            case 1:
-                System.out.println("\n    Você escolheu Mcdonald's!");
-                System.out.println("\n    Carregando menu do Macdonald's...");
-                RestaurantService.exibirCatalogoMcDonald();
-                int opcaoProduto = sc.nextInt();
-                switch (opcaoProduto) {
-                    
-                        
-                        case 1:
-                            // Pergunta se o usuario quer mais quantidade do mesmo produto, ou se quer escolher outro restaurante ou finalizar a compra
-                        System.out.println("\n    Você escolheu o BigMac!"); 
-                        // System.out.println("\n Quanto bigmacs você deseja? ");
-                        // Lógica para adicionar o produto ao carrinho com a quantidade escolhida pelo usuário
-                        // int quantidade = sc.nextInt();
-                        // ProdutoModel produto = RestaurantService.getRest1().getcatalogo().get(opcaoProduto - 1);
-                        // CarrinhoService carrinhoService = new CarrinhoService(UserService.currentUser, produto);
-                        // carrinhoService.adicionarAoCarrinho(produto, RestaurantService.getRest1(), quantidade);
-                        
-                        // fazer uma logica para chamar :
-                        /*
-                        System.out.println("\n    Oque deseja fazer agora?");
-                        System.out.println("\n (1 - Escolher mais produtos desse restaurante");
-                        System.out.println("\n (2 - Escolher outro restaurante)");
-                        System.out.println("\n (3 - Finalizar compra)");
-                         switch (sc.nextInt()) {
-                                case 1:
-                                    System.out.println("\n    Voltando para o catalogo...");
-                        
-                                    ProdutoModel produto = RestaurantService.getRest1().getcatalogo().get(opcaoProduto - 1);
-                                    CarrinhoService carrinhoService = new CarrinhoService(UserService.currentUser, produto);
-                                    carrinhoService.adicionarAoCarrinho(produto, RestaurantService.getRest1());
-                                    RestaurantService.exibirCatalogoMcDonald();
-                                    break;
-                                case 2:
-                                    System.out.println("\n    Voltando para o menu de restaurantes...");
-                                    Menu();
-                                     produto = RestaurantService.getRest1().getcatalogo().get(opcaoProduto - 1);
-                                     carrinhoService = new CarrinhoService(UserService.currentUser, produto);
-                                    break;
-                                case 3:
-                                    produto = RestaurantService.getRest1().getcatalogo().get(opcaoProduto - 1);
-                                    carrinhoService = new CarrinhoService(UserService.currentUser, produto);
-                                    carrinhoService.finalizarCompra();
-                                    break;
-                            
-                                default:
-                                    System.out.println("\n    Opção inválida!");
-                                    break;
-
-                            }
-                                    evitando assim boiler-plate, deixando codigo mais limpo e organizado, facilitando assim 
-                                    a manutenção ou futuras alterações no codigo
-                        */
+            boolean continuarPedindo = true;
+            while (continuarPedindo) {
+            System.out.println("\n             === RESTAURANTES DISPONÍVEIS ===     ");
+            System.out.println("──────────────────────────────────────────");
+            System.out.println("    1. McDonald's");
+            System.out.println("    2. Pizza Hut");
+            System.out.println("    3. Mania de Churrasco");
+            System.out.println("    4. Burger King");
+            System.out.println("    0. Finalizar compra");
+            System.out.print("    Escolha o restaurante: ");
 
 
-                         System.out.println("\n    Oque deseja fazer agora?");
-                        System.out.println("\n (1 - Escolher mais produtos desse restaurante");
-                        System.out.println("\n (2 - Escolher outro restaurante)");
-                        System.out.println("\n (3 - Finalizar compra)");
-                            switch (sc.nextInt()) {
-                                case 1:
-                                    System.out.println("\n    Voltando para o catalogo...");
-                        
-                                    ProdutoModel produto = RestaurantService.getRest1().getcatalogo().get(opcaoProduto - 1);
-                                    CarrinhoService carrinhoService = new CarrinhoService(UserService.currentUser, produto);
-                                    carrinhoService.adicionarAoCarrinho(produto, RestaurantService.getRest1());
-                                    RestaurantService.exibirCatalogoMcDonald();
-                                    break;
-                                case 2:
-                                    System.out.println("\n    Voltando para o menu de restaurantes...");
-                                    Menu();
-                                     produto = RestaurantService.getRest1().getcatalogo().get(opcaoProduto - 1);
-                                     carrinhoService = new CarrinhoService(UserService.currentUser, produto);
-                                    break;
-                                case 3:
-                                    produto = RestaurantService.getRest1().getcatalogo().get(opcaoProduto - 1);
-                                    carrinhoService = new CarrinhoService(UserService.currentUser, produto);
-                                    carrinhoService.adicionarAoCarrinho(produto, RestaurantService.getRest1());
-                                    carrinhoService.finalizarCompra();
-                                    break;
-                            
-                                default:
-                                    System.out.println("\n    Opção inválida!");
-                                    break;
-
-                            }
-                        break;
-                default:
-                System.out.println("\n    Opção inválida!");
-                break;
-                }
-                break;
-            case 2:
-                System.out.println("\n    Você escolheu Pizza Hut!");
-                System.out.println("\n    Carregando menu da Pizza Hut...");
-                RestaurantService.exibirCatalogoPizzaHut();
-                opcaoProduto = sc.nextInt();
-                switch (opcaoProduto) {
-                    case 1:
-                         System.out.println("\n    Você escolheu a Pizza Margherita!");    
-                        System.out.println("\n    Deseja Escolher mais produtos desse restaurante? (1 - Sim / 2 - Não)");
-                            switch (sc.nextInt()) {
-                                case 1:
-                                    System.out.println("\n    Voltando para o catalogo...");
-                        
-                                    ProdutoModel produto = RestaurantService.getRest2().getcatalogo().get(opcaoProduto - 1);
-                                    CarrinhoService carrinhoService = new CarrinhoService(UserService.currentUser, produto);
-                                    carrinhoService.adicionarAoCarrinho(produto, RestaurantService.getRest2());
-                                    RestaurantService.exibirCatalogoPizzaHut();
-                                    break;
-                                case 2:
-                                    produto = RestaurantService.getRest2().getcatalogo().get(opcaoProduto - 1);
-                                    carrinhoService = new CarrinhoService(UserService.currentUser, produto);
-                                    carrinhoService.adicionarAoCarrinho(produto, RestaurantService.getRest2());
-                                    carrinhoService.finalizarCompra();
-                                    break;
-                            
-                                default:
-                                    System.out.println("\n    Opção inválida!");
-                                    break;
-
-                            }
-                        break;
-                default:
-                System.out.println("\n    Opção inválida!");
-                break;
-                }
-                break;
-            case 3:
-                System.out.println("\n    Você escolheu Burger King!");
-                System.out.println("\n    Carregando menu do Burger King...");
-                RestaurantService.exibirCatalogoBurgerKing();
-                opcaoProduto = sc.nextInt();
-                switch (opcaoProduto) {
-                    case 1:
-                         System.out.println("\n    Você escolheu o Whopper!");    
-                        System.out.println("\n    Deseja Escolher mais produtos desse restaurante? (1 - Sim / 2 - Não)");
-                            switch (sc.nextInt()) {
-                                case 1:
-                                    System.out.println("\n    Voltando para o catalogo...");
-                        
-                                    ProdutoModel produto = RestaurantService.getRest4().getcatalogo().get(opcaoProduto - 1);
-                                    CarrinhoService carrinhoService = new CarrinhoService(UserService.currentUser, produto);
-                                    carrinhoService.adicionarAoCarrinho(produto, RestaurantService.getRest4());
-                                    RestaurantService.exibirCatalogoBurgerKing();
-                                    break;
-                                case 2:
-                                    produto = RestaurantService.getRest4().getcatalogo().get(opcaoProduto - 1);
-                                    carrinhoService = new CarrinhoService(UserService.currentUser, produto);
-                                    carrinhoService.adicionarAoCarrinho(produto, RestaurantService.getRest4());
-                                    carrinhoService.finalizarCompra();
-                                    break;
-                            
-                                default:
-                                    System.out.println("\n    Opção inválida!");
-                                    break;
-
-                            }
-                        break;
+            // REFAZENDO LOGICA INTEIRA PQ TINHA MUITO CODIGO DUPLICADO, tava dando agonia de tanto codigo repetido, entao decidi refazer a logica inteira, agora tem muito menos codigo e é mais facil de ler.
+            int opcaoRestaurante = sc.nextInt();
             
-            case 4:
-                System.out.println("\n    Você escolheu Mania de Churrasco!");
-                System.out.println("\n    Carregando menu do Mania de Churrasco...");
-                RestaurantService.exibirCatalogoManiaChurrasco();
-                 opcaoProduto = sc.nextInt();
-                switch (opcaoProduto) {
-                    case 1:
-                         System.out.println("\n    Você escolheu o Espeto de Frango!");    
-                        System.out.println("\n    Deseja Escolher mais produtos desse restaurante? (1 - Sim / 2 - Não)");
-                            switch (sc.nextInt()) {
-                                case 1:
-                                    System.out.println("\n    Voltando para o catalogo...");
-                        
-                                    ProdutoModel produto = RestaurantService.getRest3().getcatalogo().get(opcaoProduto - 1);
-                                    CarrinhoService carrinhoService = new CarrinhoService(UserService.currentUser, produto);
-                                    carrinhoService.adicionarAoCarrinho(produto, RestaurantService.getRest3());
-                                    RestaurantService.exibirCatalogoManiaChurrasco();
-                                    break;
-                                case 2:
-                                    produto = RestaurantService.getRest3().getcatalogo().get(opcaoProduto - 1);
-                                    carrinhoService = new CarrinhoService(UserService.currentUser, produto);
-                                    carrinhoService.adicionarAoCarrinho(produto, RestaurantService.getRest3());
-                                    carrinhoService.finalizarCompra();
-                                    break;
-                            
-                                default:
-                                    System.out.println("\n    Opção inválida!");
-                                    break;
+            if(opcaoRestaurante == 0){
+                CarrinhoService carrinhoService = new CarrinhoService(UsuarioService.currentUser);
+                carrinhoService.finalizarCompra();
+                continuarPedindo = false;
+                break;
 
-                            }
-            break;
-            case 5:
-                System.out.println("\n    Você escolheu Sair!");
-                System.out.println("\n    Redirecionando para o menu de restaurantes...");
-                Menu();
+            }
+
+            RestaurantModel restaurantSelecinado = null;
+            switch (opcaoRestaurante) {
+                case 1:
+                    restaurantSelecinado = RestauranteService.getRest1(); break;
+                case 2:
+                    restaurantSelecinado = RestauranteService.getRest2(); break;
+                case 3:
+                    restaurantSelecinado = RestauranteService.getRest3(); break;
+                case 4:
+                    restaurantSelecinado = RestauranteService.getRest4(); break;
+                default:
+                    System.out.println("\n    Opção inválida.");
+                    continue; 
+            }
+            
+            // Loop que vai continuar até o usuario quiser sair
+            boolean continuarNesteRestaurante = true;
+            while(continuarNesteRestaurante){
+                RestauranteService.exibirCatalogo(restaurantSelecinado);
+                System.out.print("\n  Digite a opção do produto que deseja adicionar ao carrinho (0 para voltar): ");
+                int opcaoProduto = sc.nextInt();
+
+                // Verifica se o usuario quer voltar para a escolha do restaurante
+                if(opcaoProduto == 0){
+                    continuarNesteRestaurante = false;
+                    continue; 
+                }
                 
-            default:
-            System.out.println("\n    Opção inválida!");
-            break;
+                // verifica se a opção do produto é válida
+                List<ProdutoModel> catalogo = restaurantSelecinado.getcatalogo();
+                if(opcaoProduto < 1 || opcaoProduto > catalogo.size()){
+                    System.out.println("\n  Opção invalida! Escolha um produto entre 1 e " + catalogo.size());
+                    continue; 
+                }
 
+                ProdutoModel produtoSelecionado = catalogo.get(opcaoProduto - 1);
+                
+                // pergunta quantidade
+                System.out.print("\n  Digite a quantidade que deseja adicionar ao carrinho: ");
+                int quantidade = sc.nextInt();
+                if(quantidade < 1){
+                    System.out.println("\n  Quantidade inválida! Digite um número maior que 0.");
+                    continue; 
+                }
+                // adiciona o produto ao carrinho do usuario
+                CarrinhoService carrinhoService = new CarrinhoService(UsuarioService.currentUser);
+                carrinhoService.adicionarAoCarrinho(produtoSelecionado, restaurantSelecinado, quantidade);
 
+                
+                System.out.println("\n    O que deseja fazer agora?");
+                System.out.println("    1 - Escolher mais produtos desse restaurante");
+                System.out.println("    2 - Escolher outro restaurante");
+                System.out.println("    3 - Finalizar compra");
+                System.out.print("    Escolha: ");
 
-        
+                int escolha = sc.nextInt();
+                switch (escolha) {
+                    case 1:
+                        break; // simplesmente continua o loop interno (fica no mesmo restaurante)
+                    case 2:
+                        continuarNesteRestaurante = false; // volta para a escolha do restaurante
+                        break;
+                    case 3:
+                        carrinhoService.finalizarCompra(); // finaliza a compra
+                        continuarNesteRestaurante = false; // volta para a escolha do restaurante
+                        continuarPedindo = false; // sai do loop principal
+                        break;
+                    default:
+                        System.out.println("\n    Opção inválida. Voltando para o menu de restaurantes.");
+                        continuarNesteRestaurante = false; // volta para a escolha do restaurante
+                        break;
+
+                }
+
+            }
+        }
+
+        sc.close();
     }
-    sc.close();
 }
-}}}
+
  

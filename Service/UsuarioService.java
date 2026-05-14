@@ -3,7 +3,7 @@ package Service;
 import java.util.Scanner;
 
 import Models.UserModel;
-public class UserService {
+public class UsuarioService {
             //Cores ANSI para estilizar a saída no console
     static final String RESET   = "\033[0m";
     static final String VERDE_ESCURO = "\033[1;32m";

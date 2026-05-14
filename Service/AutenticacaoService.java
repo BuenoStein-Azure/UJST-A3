@@ -1,10 +1,10 @@
 package Service;
 import java.util.Scanner;
 import Models.UserModel;
-import static Service.UserService.*;
+import static Service.UsuarioService.*;
 
 
-public class LoginService {
+public class AutenticacaoService {
     static final String RESET   = "\033[0m";
     static final String VERDE_ESCURO = "\033[1;32m";
     static final String AZUL    = "\033[36m";
@@ -23,9 +23,9 @@ public class LoginService {
                 System.out.println("──────────────────────────────────────────");
                 // Verificar as credenciais do usuário
                 boolean loginSuccess = false;
-                for (int i = 0; i < UserService.userCount; i++) {
+                for (int i = 0; i < UsuarioService.userCount; i++) {
                     if (users[i].getUsername().equals(username) && users[i].getPassword().equals(password)) {
-                        UserService.currentUser = users[i]; // Armazena o usuário logado
+                        UsuarioService.currentUser = users[i]; // Armazena o usuário logado
                         loginSuccess = true;
                         break;
                     }

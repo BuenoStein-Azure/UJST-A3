@@ -1,7 +1,7 @@
 package Service;
 import Models.*;
 import java.util.List;
-public class RestaurantService {
+public class RestauranteService {
     private static RestaurantModel rest1;
     private static RestaurantModel rest2;       
     private static RestaurantModel rest3;
@@ -31,20 +31,23 @@ public class RestaurantService {
          rest2.setcatalogo(List.of(
             new ProdutoModel("1. Pizza Margherita", 35.0, 10),
             new ProdutoModel("2. Pizza Pepperoni", 40.0, 10),
-            new ProdutoModel("3. Pizza Vegetariana", 30.0, 10)
+            new ProdutoModel("3. Pizza Vegetariana", 30.0, 10),
+            new ProdutoModel("4. Pizza Frango com Catupiry", 38.0, 10)
         ));
 
          rest3 = new RestaurantModel("Mania de Churrasco", "Rua do Churrasco, 789", 40028924, null);
          rest3.setcatalogo(List.of(
-            new ProdutoModel("1. Churrasco de Frango", 25.0, 10),
-            new ProdutoModel("2. Churrasco de Carne", 30.0, 10),
-            new ProdutoModel("3. Churrasco de Linguiça", 20.0, 10)
+            new ProdutoModel("1. Espetinho de Frango", 25.0, 10),
+            new ProdutoModel("2. Espetinho de Carne", 30.0, 10),
+            new ProdutoModel("3. Espetinho de Linguiça", 20.0, 10),
+            new ProdutoModel("4. Espetinho de Queijo Coalho", 25.0, 10)
         ));
          rest4 = new RestaurantModel("Burguer King", "Avenida dos Burgers, 321", 40028925, null);
          rest4.setcatalogo(List.of(
             new ProdutoModel("1. Whopper", 25.0, 10),
             new ProdutoModel("2. Big King", 30.0, 10),
-            new ProdutoModel("3. Chicken King", 22.0, 10)
+            new ProdutoModel("3. Chicken King", 22.0, 10),
+            new ProdutoModel("4. Bacon King", 35.0, 10)
         ));
     }
     public static RestaurantModel getRest1() {
@@ -63,42 +66,13 @@ public class RestaurantService {
         return List.of(rest1.getcatalogo(), rest2.getcatalogo(), rest3.getcatalogo(), rest4.getcatalogo()).stream().flatMap(List::stream).toList();
     }
 
-    public static void exibirCatalogoMcDonald(){
-        System.out.println(rest1.getRestaurantName() + " - " 
-            + rest1.getLocate() + " - " 
-            + rest1.getphoneRestaurantNumber());
+    public static void exibirCatalogo(RestaurantModel restaurant) {
         
-        for(ProdutoModel produto: rest1.getcatalogo()){
-            System.out.println(produto.getNome()+ " - R$ " + produto.getPreco() + " - Quantidade: " + produto.getQuantidade());
+        System.out.println("\n     === CARDÁPIO DO " + restaurant.getRestaurantName().toUpperCase() + " ===     ");
+        System.out.println("──────────────────────────────────────────");
+        for (ProdutoModel produto : restaurant.getcatalogo()) {
+            System.out.printf("    %s  →  R$ %.2f%n", produto.getNome(), produto.getPreco());
         }
-    }
-    public static void exibirCatalogoPizzaHut() {
-        System.out.println(rest2.getRestaurantName() + " - " 
-            + rest2.getLocate() + " - " 
-            + rest2.getphoneRestaurantNumber());
-        
-        for (ProdutoModel produto : rest2.getcatalogo()) {
-            System.out.println(produto.getNome() + " - R$ " + produto.getPreco() + " - Quantidade: " + produto.getQuantidade());
-        }
-    }
-    
-    public static void exibirCatalogoManiaChurrasco() {
-        System.out.println(rest3.getRestaurantName() + " - " 
-            + rest3.getLocate() + " - " 
-            + rest3.getphoneRestaurantNumber());
-        
-        for (ProdutoModel produto : rest3.getcatalogo()) {
-            System.out.println(produto.getNome() + " - R$ " + produto.getPreco() + " - Quantidade: " + produto.getQuantidade());
-        }
-    }
-    
-    public static void exibirCatalogoBurgerKing() {
-        System.out.println(rest4.getRestaurantName() + " - " 
-            + rest4.getLocate() + " - " 
-            + rest4.getphoneRestaurantNumber());
-        
-        for (ProdutoModel produto : rest4.getcatalogo()) {
-            System.out.println(produto.getNome() + " - R$ " + produto.getPreco() + " - Quantidade: " + produto.getQuantidade());
-        }
+        System.out.println("──────────────────────────────────────────");
     }
 }
