@@ -7,18 +7,17 @@ import java.util.Scanner;
 
 public class CarrinhoService {
     private UserModel user;
-    private ProdutoModel produto;
     private Scanner sc = new Scanner(System.in);
    
-    public CarrinhoService(UserModel user, ProdutoModel produto) {
+    public CarrinhoService(UserModel user) {
         this.user = user;
-        this.produto = produto;
+        
         
     }
 
-    public void adicionarAoCarrinho( ProdutoModel produto, RestaurantModel restaurant){ {
+    public void adicionarAoCarrinho( ProdutoModel produto, RestaurantModel restaurant, int quantidade){ {
         
-         user = UserService.currentUser; // Obtém o usuário atualmente logado
+         user = UsuarioService.currentUser; // Obtém o usuário atualmente logado
         if (user == null) {
             System.out.println("\n    Nenhum usuário logado. Por favor, faça login para adicionar produtos ao carrinho.");
             return;
@@ -27,18 +26,58 @@ public class CarrinhoService {
         if (user.getCarrinho() == null) {
             user.setCarrinho(new ArrayList<>()); 
         }
-        // Adiciona o produto ao carrinho do usuário
-        user.getCarrinho().add(new ProdutosERestaurant(List.of(produto), List.of(restaurant)));  // Adiciona o produto ao carrinho do usuário, associando-o ao restaurante correspondente
-        System.out.println("\n    Produto adicionado ao carrinho: " + produto.getNome() + " - R$" + produto.getPreco());
+         // adiciona o produto X vezes para que o cálculo de total via stream continue funcionando
+         for (int i = 0; i < quantidade; i++) {
+            user.getCarrinho().add(new ProdutosERestaurant(List.of(produto), List.of(restaurant)));
+        }
+        System.out.printf("%n    ✔ %dx %s adicionado(s) ao carrinho! (R$ %.2f cada)%n",
+                quantidade, produto.getNome(), produto.getPreco());
         
+
     //      // não sei se adicionar essa logica é hype, pq dai o usuario vai poder entrar sem logar e adicionar + uma logica pra impedir isso, mas vou deixar aqui pra caso queira implementar depois
     //      if(user == null){
     //            System.out.println("\n    Nenhum usuário logado. Por favor, faça login para adicionar produtos ao carrinho.");
     //            return;
     //        }
+    
+    }
+}
+ public void exibirCarrinho() {
+        user = UsuarioService.currentUser;
+        if (user == null || user.getCarrinho() == null || user.getCarrinho().isEmpty()) {
+            System.out.println("\n    Seu carrinho está vazio.");
+            return; // Verifica se o carrinho do usuário é nulo ou vazio e exibe mensagem apropriada
+        }
+ 
+         System.out.println("\n     === CARRINHO ATUAL ===     ");
+        System.out.println("──────────────────────────────────────────");
+        imprimirItensDaLista(user.getCarrinho());
+
+    }
+
+        public void exibirPedidosFeitos() {
+        // Verifica se o histórico de pedidos do usuário é nulo ou vazio e exibe mensagem apropriada
+        List<List<ProdutosERestaurant>> historico = user != null ? user.getHistoricoPedidos() : null;
+        
+        if(historico == null || historico.isEmpty()){
+            System.out.println("\n Você ainda não finalizou nenhum pedido nesta sessão.");
+            MenuInicialService mIS = new MenuInicialService();
+            mIS.exibirMenuEntrada();
+            return;
+        }
+
+        System.out.println("\n     === HISTÓRICO DE PEDIDOS ===     ");
+        System.out.println("══════════════════════════════════════════");
+ 
+        for (int p = 0; p < historico.size(); p++) {
+            System.out.printf("%n  Pedido #%d%n", p + 1);
+            System.out.println("──────────────────────────────────────────");
+            imprimirItensDaLista(historico.get(p));
+        }
+ 
+        System.out.println("══════════════════════════════════════════");
     }
     
-}
 // ver dps
     //public void exibirCarrinho(){
     //    
@@ -46,187 +85,145 @@ public class CarrinhoService {
   public void finalizarCompra(){
             // aqui você pode implementar a lógica para finalizar a compra, como calcular o total, processar o pagamento, etc.
         // Tela de Pagamento
+
+        exibirCarrinho();
+
+        //
+         if (user == null || user.getCarrinho() == null || user.getCarrinho().isEmpty()) {
+            System.out.println("\n    Adicione produtos antes de finalizar a compra.");
+            return;
+        }
+
         System.out.println("\n     === ÁREA DE PAGAMENTO ===     ");
         System.out.println("──────────────────────────────────────────");
-        System.out.print("\n Qual é a forma de pagamento? (1 - Cartão de Débito / 2 - Cartão de Crédito / 3 - Pix / 4 - VR/VA): ");
-    
+        System.out.print("\n    Forma de pagamento:\n"
+                + "    1 - Cartão de Débito\n"
+                + "    2 - Cartão de Crédito\n"
+                + "    3 - Pix\n"
+                + "    4 - VR / VA\n"
+                + "    Escolha: ");
     
         switch (sc.nextInt()) {
             case 1:
                 System.out.println("\n    Você escolheu pagar com Cartão de Debito.");
-
-
-                if(user.getMetodoPagamento() == null){
-                    System.out.println("\n    Você não possui nem um método de pagamento cadastrado.");
-                    System.out.println("\n    Deseja cadastrar um método de pagamento? (1 - Sim / 2 - Não)");
-                    switch (sc.nextInt()) {
-                        case 1:
-                            System.out.println("\n    Qual método de pagamento deseja cadastrar? (1 - Cartão de Debito / 2 - Cartão de Crédito)");
-                            switch (sc.nextInt()) {
-                                case 1:
-                                    MetodosDePagamento metodosDePagamento = new MetodosDePagamento();
-                                    metodosDePagamento.cadastroMetodoPagamentoDebito();
-                                     System.out.println("\n    Deseja cadastrar outro método de pagamento? (1 - Sim / 2 - Não)");
-                                        switch (sc.nextInt()) {
-                                            case 1:
-                                                System.out.println("\n    Qual método de pagamento deseja cadastrar? (1 - Cartão de Debito / 2 - Cartão de Crédito)");
-                                                 switch (sc.nextInt()) {
-                                                     case 1:
-                                                         metodosDePagamento.cadastroMetodoPagamentoDebito();
-                                                         break;
-                                                     case 2:
-                                                         metodosDePagamento.cadastroMetodoPagamentoCredito();
-                                                         break;
-                                                     default:
-                                                         System.out.println("\n    Opção inválida!");
-                                                         break;
-                                                 }
-                                                 break;
-                                            case 2:
-                                                System.out.println("\n    Finalizando compra com método de pagamento cadastrado...");
-                                                System.out.println("\n    Método de pagamento cadastrado: " + user.getMetodoPagamento());
-                                                System.out.println("\n    Valor total da compra: R$ " + user.getCarrinho().stream().flatMap(c -> c.getProdutos().stream()).mapToDouble(ProdutoModel::getPreco).sum());
-                                                // stream, flatmap, maptoDouble e sum para calcular o valor total da compra somando o preço de todos os produtos no carrinho do usuário
-                                                break;
-                                            default:
-                                                System.out.println("\n    Opção inválida!");
-                                                break;
-                                        }
-                                    break;
-                                case 2:
-                                    metodosDePagamento = new MetodosDePagamento();
-                                    metodosDePagamento.cadastroMetodoPagamentoCredito();
-                                     System.out.println("\n    Deseja cadastrar outro método de pagamento? (1 - Sim / 2 - Não)");
-                                        switch (sc.nextInt()) {
-                                            case 1:
-                                                System.out.println("\n    Qual método de pagamento deseja cadastrar? (1 - Cartão de Debito / 2 - Cartão de Crédito)");
-                                                 switch (sc.nextInt()) {
-                                                     case 1:
-                                                         metodosDePagamento.cadastroMetodoPagamentoDebito();
-                                                         break;
-                                                     case 2:
-                                                         metodosDePagamento.cadastroMetodoPagamentoCredito();
-                                                         break;
-                                                     default:
-                                                         System.out.println("\n    Opção inválida!");
-                                                         break;
-                                                 }
-                                                 break;
-                                            case 2:
-                                                System.out.println("\n    Finalizando compra com método de pagamento cadastrado...");
-                                                System.out.println("\n    Método de pagamento cadastrado: " + user.getMetodoPagamento());
-                                                System.out.println("\n    Valor total da compra: R$ " + user.getCarrinho().stream().flatMap(c -> c.getProdutos().stream()).mapToDouble(ProdutoModel::getPreco).sum());
-                                                break;
-                                            default:
-                                                System.out.println("\n    Opção inválida!");
-                                                break;
-                                        }
-                                    break;
+                processarCartao("débito");
+                break;
                             
-                                default:
-                                    System.out.println("\n    Opção inválida!");
-                                    break;
-                            }
-                        }}
-                            break;
-                        case 2:
-                            System.out.println("\n   Você escolheu Pagar com Cartão de Credito");
-                            if(user.getMetodoPagamento() == null){
-                            System.out.println("\n    Você não possui nem um método de pagamento cadastrado.");
-                            System.out.println("\n    Deseja cadastrar um método de pagamento? (1 - Sim / 2 - Não)");
-                            switch (sc.nextInt()) { 
-
-                                case 1:
-                                    System.out.println("\n    Qual método de pagamento deseja cadastrar? (1 - Cartão de Debito / 2 - Cartão de Crédito)");
-                                    switch (sc.nextInt()) {
-                                        case 1:
-                                            MetodosDePagamento metodosDePagamento = new MetodosDePagamento();
-                                            metodosDePagamento.cadastroMetodoPagamentoDebito();
-                                             System.out.println("\n    Deseja cadastrar outro método de pagamento? (1 - Sim / 2 - Não)");
-                                                switch (sc.nextInt()) {
-                                                    case 1:
-                                                        System.out.println("\n    Qual método de pagamento deseja cadastrar? (1 - Cartão de Debito / 2 - Cartão de Crédito)");
-                                                         switch (sc.nextInt()) {
-                                                             case 1:
-                                                                 metodosDePagamento.cadastroMetodoPagamentoDebito();
-                                                                 break;
-                                                             case 2:
-                                                                 metodosDePagamento.cadastroMetodoPagamentoCredito();
-                                                                 break;
-                                                             default:
-                                                                 System.out.println("\n    Opção inválida!");
-                                                                 break;
-                                                         }
-                                                         break;
-                                                    case 2:
-                                                        System.out.println("\n    Finalizando compra com método de pagamento cadastrado...");
-                                                        System.out.println("\n    Método de pagamento cadastrado: " + user.getMetodoPagamento());
-                                                        System.out.println("\n    Valor total da compra: R$ " + user.getCarrinho().stream().flatMap(c -> c.getProdutos().stream()).mapToDouble(ProdutoModel::getPreco).sum());
-                                                        break;
-                                                    default:
-                                                        System.out.println("\n    Opção inválida!");
-                                                        break;
-                                                }
-                                            break;
-                                        case 2:
-                                            metodosDePagamento = new MetodosDePagamento();
-                                            metodosDePagamento.cadastroMetodoPagamentoCredito();
-                                             System.out.println("\n    Deseja cadastrar outro método de pagamento? (1 - Sim / 2 - Não)");
-                                                switch (sc.nextInt()) {
-                                                    case 1:
-                                                        System.out.println("\n    Qual método de pagamento deseja cadastrar? (1 - Cartão de Debito / 2 - Cartão de Crédito)");
-                                                         switch (sc.nextInt()) {
-                                                             case 1:
-                                                                 metodosDePagamento.cadastroMetodoPagamentoDebito();
-                                                                 break;
-                                                             case 2:
-                                                                 metodosDePagamento.cadastroMetodoPagamentoCredito();
-                                                                 break;
-                                                             default:
-                                                                 System.out.println("\n    Opção inválida!");
-                                                                 break;
-                                                         }
-                                                         break;
-                                                    case 2:
-                                                        System.out.println("\n    Finalizando compra com método de pagamento cadastrado...");
-                                                        System.out.println("\n    Método de pagamento cadastrado: " + user.getMetodoPagamento());
-                                                        System.out.println("\n    Valor total da compra: R$ " + user.getCarrinho().stream().flatMap(c -> c.getProdutos().stream()).mapToDouble(ProdutoModel::getPreco).sum());
-                                                        break;
-                                                    default:
-                                                        System.out.println("\n    Opção inválida!");
-                                                        break;
-                                                }
-                                            break;
-                                        default:
-                                            System.out.println("\n    Opção inválida!");
-                                            break;
-                                    } 
-                                } 
-                            }
-                                    break;
-                        case 3:
-                            System.out.println("\n    Você escolheu pagar com Pix");
-                            GeradorPixService geradorPixService = new GeradorPixService();
-                            geradorPixService.gerarChavePix(); 
-                            System.out.println("\n  Pagamento com Pix realizado com sucesso!");
-                            System.out.println("\n    Valor total da compra: R$ " + user.getCarrinho().stream().flatMap(c -> c.getProdutos().stream()).mapToDouble(ProdutoModel::getPreco).sum());
-                           
-                            break;
-                        default:
-                            System.out.println("\n    Opção inválida!");
-                            break;
-                        case 4:
-                            System.out.println("\n    Você escolheu pagar com VR/VA");
-                            // VR/VA não precisa entrar no metodo de pagamento pq o VR/VA é instantaneo.
-                            System.out.println("\n    Finalizando compra com VR/VA...");
-                            System.out.println("\n    Método de pagamento cadastrado: " + user.getMetodoPagamento());
-                            System.out.println("\n    Valor total da compra: R$ " + user.getCarrinho().stream().flatMap(c -> c.getProdutos().stream()).mapToDouble(ProdutoModel::getPreco).sum());
-                            break;
+             case 2:
+                System.out.println("\n    Você escolheu pagar com Cartão de Crédito.");
+                processarCartao("crédito");
+                break;
+                        
+            
+            case 3:
+                System.out.println("\n    Você escolheu pagar com Pix.");
+                GeradorPixService geradorPixService = new GeradorPixService();
+                geradorPixService.gerarChavePix();
+                confirmarEFecharPedido();            
+                break;
+                        
+                
+            case 4:
+                System.out.println("\n    Você escolheu pagar com VR/VA");
+                // VR/VA não precisa entrar no metodo de pagamento pq o VR/VA é instantaneo.
+                System.out.println("\n    Finalizando compra com VR/VA...");
+                confirmarEFecharPedido();
+                break;
 
                     }
+    
                             }
 
+    
+    private void processarCartao(String tipo) {
+        if (user.getMetodoPagamento() == null) {
+            System.out.println("\n    Você não possui cartão cadastrado.");
+            System.out.print("    Deseja cadastrar agora? (1 - Sim / 2 - Não): ");
+            if (sc.nextInt() == 1) {
+                MetodosDePagamento mp = new MetodosDePagamento();
+                if (tipo.equals("débito")) {
+                    mp.cadastroMetodoPagamentoDebito();
+                } else {
+                    mp.cadastroMetodoPagamentoCredito();
+                }
+            } else {
+                System.out.println("\n    Pagamento cancelado.");
+                return;
+            }
+        } else {
+            System.out.println("\n Você possui os seguintes cartões cadastrados: ");
+            for (Object cartao : user.getMetodoPagamento()) {
+                System.out.println("    - " + cartao);
+            }
+            System.out.println("\n    Deseja finalizar a compra com um desses cartões? (1 - Sim / 2 - Não): ");
+            if (sc.nextInt() == 1) {
+                System.out.println("\n Escolha o cartão que deseja usar para finalizar a compra: ");
+                ArrayList<Object> cartoes = new ArrayList<>(user.getMetodoPagamento());
+                for (int i = 0; i < cartoes.size(); i++) {
+                    System.out.println((i + 1) + " - " + cartoes.get(i));
+                }
+                System.out.print("    Opção: ");
+                int opcao = sc.nextInt();
+                if (opcao >= 1 && opcao <= cartoes.size()) {
+                    System.out.println("\n    Finalizando compra com cartão de " + tipo + "...");
+                    confirmarEFecharPedido();
+                } else {
+                    System.out.println("\n    Opção inválida.");
+                    return;
+                }
+            } else {
+                System.out.println("\n    Pagamento cancelado.");
+                System.out.println("\n    Redirecionando para a tela de pagamento...");
+                finalizarCompra();
+                return;
+            }
+        }
+        if (user.getMetodoPagamento() != null && user.getMetodoPagamento().get(1) != null) {
+            System.out.println("\n Você possui apenas o seguinte cartão cadastrado: " + user.getMetodoPagamento().get(0));
+            System.out.println("\n  Deseja finalizar a compra com este cartão? (1 - Sim / 2 - Não): ");
+        if (sc.nextInt() == 1) {
+            System.out.println("\n    Finalizando compra com cartão de " + tipo + "...");
+            confirmarEFecharPedido();
+        } else {
+            System.out.println("\n    Pagamento cancelado.");
+            System.out.println("\n    Redirecionando para a tela de pagamento...");
+            finalizarCompra();
+            return;
+        }
+        }
+        
+        confirmarEFecharPedido();
     }
 
+    private void imprimirItensDaLista(List<ProdutosERestaurant> lista) {
+    double total = 0;
 
-                            
+    for (int i = 0; i < lista.size(); i++) {
+        ProdutoModel p        = lista.get(i).getProdutos().get(0);
+        String restaurante    = lista.get(i).getRestaurantes().get(0).getRestaurantName();
+
+        System.out.printf("    %d. %s [%s]  R$ %.2f%n", i + 1, p.getNome(), restaurante, p.getPreco());
+        total += p.getPreco();
+    }
+
+    System.out.println("──────────────────────────────────────────");
+    System.out.printf("    Total: R$ %.2f%n", total);
+    System.out.println("──────────────────────────────────────────");
+}
+
+
+     private void confirmarEFecharPedido() {
+        double total = user.getCarrinho().stream()
+                .flatMap(c -> c.getProdutos().stream())
+                .mapToDouble(ProdutoModel::getPreco)
+                .sum();
+        System.out.printf("%n    ✔ Pagamento confirmado!%n");
+        System.out.printf("    Valor total cobrado: R$ %.2f%n", total);
+        System.out.println("\n    Obrigado pela preferência! Seu pedido está a caminho. 🚀");
+        System.out.println("──────────────────────────────────────────");
+        // limpa o carrinho após o pagamento
+        user.setCarrinho(new ArrayList<>());
+
+
+}
+}

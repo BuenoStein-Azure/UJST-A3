@@ -1,5 +1,6 @@
 package Models;
 import java.util.List;
+import java.util.ArrayList;
 
 public class UserModel {
     private String username;
@@ -8,6 +9,8 @@ public class UserModel {
     private double phoneNumber;
     private List<ProdutosERestaurant> carrinho = null;
     private List<Object> metodoPagamento = null;
+    
+    private List<List<ProdutosERestaurant>> historicoPedidos = new ArrayList<>();
 
     public UserModel(String username, String password, String email, double phoneNumber, List<ProdutosERestaurant> carrinho, List<Object> metodoPagamento) {
         this.username = username;
@@ -64,4 +67,19 @@ public class UserModel {
         this.metodoPagamento = metodoPagamento;
     }
     
+
+
+    // Não pensei nessa logica, gpt ajudou a criar / abriu minha mente 
+    public List<List<ProdutosERestaurant>> getHistoricoPedidos() {
+        // Lógica para retornar o histórico de pedidos do usuário
+        return historicoPedidos; // Retorna a lista de pedidos do usuário
+    }
+
+    public void adicionarPedidoAoHistorico(List<ProdutosERestaurant> pedido) {
+        // Lógica para adicionar um pedido ao histórico do usuário
+        if(historicoPedidos == null){
+            historicoPedidos = new ArrayList<>();
+        }
+        historicoPedidos.add(new ArrayList<>(pedido)); // Adiciona o pedido à lista de pedidos do usuário
+    }
 }

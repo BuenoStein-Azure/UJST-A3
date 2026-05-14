@@ -21,7 +21,7 @@ public class MetodosDePagamento {
         System.out.println("──────────────────────────────────────────");
         sc.close();
         // Aqui você pode adicionar a lógica para salvar o cartão de débito, como associá-lo ao usuário logado
-        UserModel user = UserService.currentUser; // Obtém o usuário atualmente logado
+        UserModel user = UsuarioService.currentUser; // Obtém o usuário atualmente logado
 
         List<Object> cartãoFeitoList = new ArrayList<>();
         cartãoFeitoList.add("Cartão de Débito - Número: " + numeroCartao + ", Validade: " + dataValidade + ", Código de Segurança: " + codigoSeguranca);
@@ -55,7 +55,7 @@ public class MetodosDePagamento {
         System.out.println("──────────────────────────────────────────");
         sc.close();
         // Aqui você pode adicionar a lógica para salvar o cartão de crédito, como associá-lo ao usuário logado
-        UserModel user = UserService.currentUser; // Obtém o usuário atualmente logado
+        UserModel user = UsuarioService.currentUser; // Obtém o usuário atualmente logado
 
         List<Object> cartãoFeitoList = new ArrayList<>();
         cartãoFeitoList.add("Cartão de Crédito - Número: " + numeroCartao + ", Validade: " + dataValidade + ", Código de Segurança: " + codigoSeguranca);
