@@ -1,7 +1,9 @@
 package Service;
+import static Service.UsuarioService.users;
+
 import java.util.Scanner;
-import Models.UserModel;
-import static Service.UsuarioService.*;
+import Models.*;
+import Service.*;
 
 
 public class AutenticacaoService {
