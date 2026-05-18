@@ -26,10 +26,10 @@ public class UsuarioService {
             String username = sc.nextLine();
             System.out.println("──────────────────────────────────────────");
             System.out.print(AZUL + "  Digite seu número de telefone: " + RESET);
-            Double phoneNumber = sc.nextDouble();
+            String phoneNumber = sc.nextLine();
             System.out.println("──────────────────────────────────────────");
             System.out.print(AZUL + "  Digite seu email: " + RESET);
-            String email2 = sc.nextLine();
+            
             String email = sc.nextLine();
             System.out.println("──────────────────────────────────────────");
             System.out.print(AZUL + "  Digite sua senha: " + RESET);

@@ -6,13 +6,13 @@ public class UserModel {
     private String username;
     private String password;
     private String email;
-    private double phoneNumber;
+    private String phoneNumber;
     private List<ProdutosERestaurant> carrinho = null;
     private List<Object> metodoPagamento = null;
     
     private List<List<ProdutosERestaurant>> historicoPedidos = new ArrayList<>();
 
-    public UserModel(String username, String password, String email, double phoneNumber, List<ProdutosERestaurant> carrinho, List<Object> metodoPagamento) {
+    public UserModel(String username, String password, String email, String phoneNumber, List<ProdutosERestaurant> carrinho, List<Object> metodoPagamento) {
         this.username = username;
         this.password = password;
         this.email = email;
@@ -46,11 +46,11 @@ public class UserModel {
         this.email = email;
     }
 
-    public double getPhoneNumber() {
+    public String getPhoneNumber() {
         return phoneNumber;
     }
 
-    public void setPhoneNumber(double phoneNumber) {
+    public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
     }
 
