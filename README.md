@@ -26,6 +26,7 @@ Este repositório contém o desenvolvimento do projeto **NextFood**, elaborado c
 | Igor de Souza Bueno  | 8261107854 |
 | Ryan Gomes dos Santos  | 8261102012 |
 | Daniel Magalhães Pereira Dos Santos  | 8261104325 |
+| Gabriel Ramos do Nascimento | 826176212 |
 
 ## Diagrama de Classes
 
