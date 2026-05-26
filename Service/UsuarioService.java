@@ -1,0 +1,62 @@
+package Service;
+
+import Models.UserModel;
+import java.util.Scanner;
+public class UsuarioService {
+            //Cores ANSI para estilizar a saída no console
+    static final String RESET   = "\033[0m";
+    static final String VERDE_ESCURO = "\033[1;32m";
+    static final String AZUL    = "\033[36m";
+    static final String BRANCO = "\033[97m";
+    static final String VERMELHO = "\033[31m";
+    static final String AMARELO = "\033[33m";
+    static final String ROXO = "\033[35m";
+    static final String AZUL_ESCURO = "\033[34m";
+
+        public static final int MAX_USERS = 100;
+        public static UserModel[] users = new UserModel[MAX_USERS];
+        public static int userCount = 0;   
+        public static UserModel currentUser;
+        
+        Scanner sc = new Scanner(System.in);
+
+        public boolean registerUser() {
+            // Tela de Cadastro
+            
+            System.out.println(BRANCO + "\n     === ÁREA DE CADASTRO ===     " + RESET);
+            System.out.println(VERDE_ESCURO + "──────────────────────────────────────────" + RESET);
+            System.out.print(AZUL + "\n  Digite seu nome de usuário: " + RESET);
+            String username = sc.nextLine();
+            System.out.println("──────────────────────────────────────────");
+            System.out.print(AZUL + "  Digite seu número de telefone: " + RESET);
+            Double phoneNumber = sc.nextDouble();
+            System.out.println("──────────────────────────────────────────");
+            System.out.print(AZUL + "  Digite seu email: " + RESET);
+            String email2 = sc.nextLine();
+            String email = sc.nextLine();
+            System.out.println("──────────────────────────────────────────");
+            System.out.print(AZUL + "  Digite sua senha: " + RESET);
+            String password = sc.nextLine();
+            System.out.println("──────────────────────────────────────────");
+
+            boolean registerUser = false;
+            if (userCount < MAX_USERS) {
+                users[userCount] = new UserModel(username, password, email, phoneNumber,null,null);
+                userCount++;
+                System.out.println("\n    Usuário registrado com sucesso!");
+                currentUser = users[userCount - 1]; // Set the current user
+                return registerUser = true;
+                
+            } else {
+                System.out.println("\n    Limite máximo de usuários atingido. Não é possível registrar mais usuários.");
+            }
+            return registerUser;
+        }    
+        public void listarUsuarios() {
+            System.out.println("\n    Lista de Usuários Registrados:");
+            for (int i = 0; i < userCount; i++) {
+                System.out.println("    " + users[i].getUsername() + " - " + users[i].getEmail() + " - " + users[i].getPhoneNumber());
+            }
+        }
+                 
+}
