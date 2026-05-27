@@ -1,14 +1,17 @@
 package Service;
-import java.util.Scanner;
 import Models.*;
-import java.util.List;
+import static Service.UsuarioService.BRANCO;
+import static Service.UsuarioService.RESET;
+import static Service.UsuarioService.VERDE_ESCURO;
 import java.util.ArrayList;
+import java.util.List;
+import java.util.Scanner;
 public class MetodosDePagamento {
     
     public void cadastroMetodoPagamentoDebito(){
         Scanner sc = new Scanner(System.in);
-        System.out.println("\n   == Cadastro de Cartão de Débito ==");
-        System.out.println("──────────────────────────────────────────");
+        System.out.println(BRANCO + "\n   == Cadastro de Cartão de Débito ==" + RESET);
+        System.out.println(VERDE_ESCURO + "──────────────────────────────────────────" + RESET);
         // Lógica para cadastrar o método de pagamento de cartão de débito
         System.out.println("\n    Digite o número do cartão de débito: ");
         String numeroCartao = sc.nextLine();
@@ -41,8 +44,8 @@ public class MetodosDePagamento {
     }
     public void cadastroMetodoPagamentoCredito(){
         Scanner sc = new Scanner(System.in);
-        System.out.println("\n   == Cadastro de Cartão de Crédito ==");
-        System.out.println("──────────────────────────────────────────");
+        System.out.println(BRANCO + "\n   == Cadastro de Cartão de Crédito ==" + RESET);
+        System.out.println(VERDE_ESCURO + "──────────────────────────────────────────" + RESET);
         // Lógica para cadastrar o método de pagamento de cartão de crédito
         System.out.println("\n    Digite o número do cartão de crédito: ");
         String numeroCartao = sc.nextLine();
