@@ -28,7 +28,7 @@ public class CarrinhoService {
          for (int i = 0; i < quantidade; i++) {
             user.getCarrinho().add(new ProdutosERestaurant(List.of(produto), List.of(restaurant)));
         }
-        System.out.printf("%n    ✔ %dx %s adicionado(s) ao carrinho! (R$ %.2f cada)%n",
+        System.out.printf(VERDE_ESCURO + "%n    ✔ %dx %s adicionado(s) ao carrinho!" + RESET + " (R$ %.2f cada)%n",
                 quantidade, produto.getNome(), produto.getPreco());
         
 
@@ -211,7 +211,7 @@ public class CarrinhoService {
                 .flatMap(c -> c.getProdutos().stream())
                 .mapToDouble(ProdutoModel::getPreco)
                 .sum();
-        System.out.printf("%n    ✔ Pagamento confirmado!%n");
+        System.out.printf(VERDE_ESCURO + "%n    ✔ Pagamento confirmado!%n" + RESET);
         System.out.printf("    Valor total cobrado: R$ %.2f%n", total);
         System.out.println("\n    Obrigado pela preferência! Seu pedido está a caminho. 🚀");
         System.out.println(VERDE_ESCURO + "──────────────────────────────────────────" + RESET);

@@ -14,7 +14,7 @@ public class MetodosDePagamento {
         System.out.println("\n    Digite o número do cartão de débito: ");
         String numeroCartao = sc.nextLine();
         System.out.println(VERDE_ESCURO + "──────────────────────────────────────────" + RESET);
-            System.out.println(VERDE_ESCURO + "\n    Digite a data de validade do cartão (MM/AA): " + RESET);
+        System.out.println(VERDE_ESCURO + "\n    Digite a data de validade do cartão (MM/AA): " + RESET);
         String dataValidade = sc.nextLine();
         System.out.println(VERDE_ESCURO + "──────────────────────────────────────────" + RESET);
         System.out.println("\n    Digite o código de segurança do cartão: ");
@@ -37,7 +37,7 @@ public class MetodosDePagamento {
         } else {
             System.out.println("\n    Nenhum usuário logado. Por favor, faça login para cadastrar um método de pagamento.");
         }
-        
+
         System.out.println("\n    Cartão de débito cadastrado com sucesso!");
     }
     public void cadastroMetodoPagamentoCredito(){
@@ -63,7 +63,7 @@ public class MetodosDePagamento {
        
         if (user != null) {
             if(user.getMetodoPagamento() == null){
-                user.setMetodoPagamento(cartãoFeitoList);;
+                user.setMetodoPagamento(cartãoFeitoList);
             } else {
                 user.getMetodoPagamento().add(cartãoFeitoList);
             }

@@ -1,5 +1,5 @@
 package Service;
-import static Service.UsuarioService.VERDE_ESCURO;
+import static Service.UsuarioService.*;
 import java.util.Random;
 
 public class GeradorPixService {

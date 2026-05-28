@@ -14,41 +14,41 @@ public class RestauranteService {
         // Criação dos Restaurantes e seus respectivos cardápios utilizando a classe RestaurantModel e ProdutoModel
          rest1 = new RestaurantModel(VERMELHO + "Mcdonald's" + RESET, "Rua das Laranjeiras, 123", 40028922,null);
          rest1.setcatalogo(List.of(
-            new ProdutoModel("1. BigMac", 25.0, 10),
-            new ProdutoModel("2. McQuarteirão", 28.0, 10),
-            new ProdutoModel("3. McChicken", 22.0, 10),
-            new ProdutoModel("4. McCheddar", 30.0, 10),
-            new ProdutoModel("5. Coca Cola 500 ml", 10.0, 10),
-            new ProdutoModel("6. Mcfritas Média", 12.0, 10)
+            new ProdutoModel(BRANCO + "1. "+ RESET + "BigMac", 25.0, 10),
+            new ProdutoModel(BRANCO + "2. "+ RESET + "McQuarteirão", 28.0, 10),
+            new ProdutoModel(BRANCO + "3. "+ RESET + "McChicken", 22.0, 10),
+            new ProdutoModel(BRANCO + "4. "+ RESET + "McCheddar", 30.0, 10),
+            new ProdutoModel(BRANCO + "5. "+ RESET + "Coca Cola 500 ml", 10.0,10),
+            new ProdutoModel(BRANCO + "6. "+ RESET + "Mcfritas Média", 12.0, 10)
         ));
 
          rest2 = new RestaurantModel(AMARELO + "Pizza Hut" + RESET, "Avenida dos Pizzaiolos, 456", 40028923, null);
          rest2.setcatalogo(List.of(
-            new ProdutoModel("1. Pizza Margherita", 35.0, 10),
-            new ProdutoModel("2. Pizza Pepperoni", 40.0, 10),
-            new ProdutoModel("3. Pizza Vegetariana", 30.0, 10),
-            new ProdutoModel("4. Pizza Frango com Catupiry", 38.0, 10),
-            new ProdutoModel("5. Refrigerante 2L", 15.0, 10),
-            new ProdutoModel("6. Pizza Chocolate", 32.0, 10)
+            new ProdutoModel(BRANCO + "1. "+ RESET + "Pizza Margherita", 35.0,10),
+            new ProdutoModel(BRANCO + "2. "+ RESET + "Pizza Pepperoni", 40.0, 10),
+            new ProdutoModel(BRANCO + "3. "+ RESET + "Pizza Vegetariana", 30.0, 10),
+            new ProdutoModel(BRANCO + "4. "+ RESET + "Pizza Frango com Catupiry", 38.0, 10),
+            new ProdutoModel(BRANCO + "5. "+ RESET + "Refrigerante 2L", 15.0, 10),
+            new ProdutoModel(BRANCO + "6. "+ RESET + "Pizza Chocolate", 32.0, 10)
         ));
 
          rest3 = new RestaurantModel("Mania de Churrasco", "Rua do Churrasco, 789", 40028924, null);
          rest3.setcatalogo(List.of(
-            new ProdutoModel("1. Espetinho de Frango", 25.0, 10),
-            new ProdutoModel("2. Espetinho de Carne", 30.0, 10),
-            new ProdutoModel("3. Espetinho de Linguiça", 20.0, 10),
-            new ProdutoModel("4. Espetinho de Queijo Coalho", 25.0, 10),
-            new ProdutoModel("5. Refrigerante 2L", 15.0, 10)
+            new ProdutoModel(BRANCO + "1. "+ RESET + "Espetinho de Frango", 25.0, 10),
+            new ProdutoModel(BRANCO + "2. "+ RESET + "Espetinho de Carne", 30.0, 10),
+            new ProdutoModel(BRANCO + "3. "+ RESET + "Espetinho de Linguiça", 20.0, 10),
+            new ProdutoModel(BRANCO + "4. "+ RESET + "Espetinho de Queijo Coalho", 25.0, 10),
+            new ProdutoModel(BRANCO + "5. "+ RESET + "Refrigerante 2L", 15.0, 10)
         ));
          rest4 = new RestaurantModel(AZUL_ESCURO + "Burguer King" + RESET, "Avenida dos Burgers, 321", 40028925, null);
          rest4.setcatalogo(List.of(
-            new ProdutoModel("1. Whopper", 25.0, 10),
-            new ProdutoModel("2. Big King", 30.0, 10),
-            new ProdutoModel("3. Chicken King", 22.0, 10),
-            new ProdutoModel("4. Bacon King", 35.0, 10),
-            new ProdutoModel("5.  Pepsi 500 ml", 10.0, 10),
-            new ProdutoModel("6. Onion Rings", 12.0, 10),
-            new ProdutoModel("7. Batata Frita Média", 12.0, 10)
+            new ProdutoModel(BRANCO + "1. "+ RESET + "Whopper", 25.0, 10),
+            new ProdutoModel(BRANCO + "2. "+ RESET + "Big King", 30.0, 10),
+            new ProdutoModel(BRANCO + "3. "+ RESET + "Chicken King", 22.0, 10),
+            new ProdutoModel(BRANCO + "4. "+ RESET + "Bacon King", 35.0, 10),
+            new ProdutoModel(BRANCO + "5. "+ RESET + "Pepsi 500 ml", 10.0, 10),
+            new ProdutoModel(BRANCO + "6. "+ RESET + "Onion Rings", 12.0, 10),
+            new ProdutoModel(BRANCO + "7. "+ RESET + "Batata Frita Média", 12.0, 10)
         ));
     }
     public static RestaurantModel getRest1() {
