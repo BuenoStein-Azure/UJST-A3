@@ -24,10 +24,13 @@ public class MenuOpcaoService {
                 menuRestauranteService.Menu();
                 break;
     
-            case 2:                
+            case 2:       
+                CarrinhoService carrinhoService = new CarrinhoService(UsuarioService.currentUser);
+                carrinhoService.exibirPedidosFeitos();
                 break;
-
             case 3: 
+                MenuInicialService menuInicialService = new MenuInicialService();
+                menuInicialService.exibirMenuEntrada();
                 break;
             default:
                 break;
