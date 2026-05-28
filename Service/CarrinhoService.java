@@ -11,8 +11,6 @@ public class CarrinhoService {
    
     public CarrinhoService(UserModel user) {
         this.user = user;
-        
-        
     }
 
     public void adicionarAoCarrinho( ProdutoModel produto, RestaurantModel restaurant, int quantidade){ {
@@ -94,8 +92,8 @@ public class CarrinhoService {
             return;
         }
 
-        System.out.println("\n     === ÁREA DE PAGAMENTO ===     ");
-        System.out.println("──────────────────────────────────────────");
+        System.out.println(BRANCO + "\n     === ÁREA DE PAGAMENTO ===     " + RESET);
+        System.out.println(VERDE_ESCURO + "──────────────────────────────────────────" + RESET);
         System.out.print("\n    Forma de pagamento:\n"
                 + "    1 - Cartão de Débito\n"
                 + "    2 - Cartão de Crédito\n"
@@ -114,7 +112,6 @@ public class CarrinhoService {
                 processarCartao("crédito");
                 break;
                         
-            
             case 3:
                 System.out.println("\n    Você escolheu pagar com Pix.");
                 GeradorPixService geradorPixService = new GeradorPixService();
@@ -122,7 +119,6 @@ public class CarrinhoService {
                 confirmarEFecharPedido();            
                 break;
                         
-                
             case 4:
                 System.out.println("\n    Você escolheu pagar com VR/VA");
                 // VR/VA não precisa entrar no metodo de pagamento pq o VR/VA é instantaneo.
@@ -133,7 +129,6 @@ public class CarrinhoService {
                     }
             }
 
-    
     private void processarCartao(String tipo) {
         if (user.getMetodoPagamento() == null) {
             System.out.println("\n    Você não possui cartão cadastrado.");

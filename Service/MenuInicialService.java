@@ -32,7 +32,6 @@ public class MenuInicialService {
                     System.out.println("\n  Login falhou. Redirecionando para o menu inicial...");
                     sc.close();
                     return  exibirMenuEntrada();
-                    
                 }
                     
             case 2:
@@ -49,7 +48,6 @@ public class MenuInicialService {
                     System.out.println("\n  Registro falhou. Redirecionando para o menu inicial...");
                     sc.close();
                     return exibirMenuEntrada();
-                    
                 }
             case 3:
                 System.out.println("\n Obrigado por usar nosso app!");

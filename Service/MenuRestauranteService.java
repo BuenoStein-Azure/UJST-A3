@@ -30,7 +30,6 @@ public class MenuRestauranteService {
                 carrinhoService.finalizarCompra();
                 continuarPedindo = false;
                 break;
-
             }
 
             RestaurantModel restaurantSelecinado = null;
@@ -104,12 +103,9 @@ public class MenuRestauranteService {
                         System.out.println("\n    Opção inválida. Voltando para o menu de restaurantes.");
                         continuarNesteRestaurante = false; // volta para a escolha do restaurante
                         break;
-
                 }
             }
         }
         sc.close();
     }
 }
-
- 

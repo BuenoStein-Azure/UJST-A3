@@ -12,7 +12,7 @@ public class RestauranteService {
     // assim é sempre inicializado automaticamente, sem precisar chamar o construtor.
     static{
         // Criação dos Restaurantes e seus respectivos cardápios utilizando a classe RestaurantModel e ProdutoModel
-         rest1 = new RestaurantModel("Mcdonald's", "Rua das Laranjeiras, 123", 40028922,null);
+         rest1 = new RestaurantModel(VERMELHO + "Mcdonald's" + RESET, "Rua das Laranjeiras, 123", 40028922,null);
          rest1.setcatalogo(List.of(
             new ProdutoModel("1. BigMac", 25.0, 10),
             new ProdutoModel("2. McQuarteirão", 28.0, 10),
@@ -22,13 +22,14 @@ public class RestauranteService {
             new ProdutoModel("6. Mcfritas Média", 12.0, 10)
         ));
 
-         rest2 = new RestaurantModel("Pizza Hut", "Avenida dos Pizzaiolos, 456", 40028923, null);
+         rest2 = new RestaurantModel(AMARELO + "Pizza Hut" + RESET, "Avenida dos Pizzaiolos, 456", 40028923, null);
          rest2.setcatalogo(List.of(
             new ProdutoModel("1. Pizza Margherita", 35.0, 10),
             new ProdutoModel("2. Pizza Pepperoni", 40.0, 10),
             new ProdutoModel("3. Pizza Vegetariana", 30.0, 10),
             new ProdutoModel("4. Pizza Frango com Catupiry", 38.0, 10),
-            new ProdutoModel("5. Refrigerante 2L", 15.0, 10)
+            new ProdutoModel("5. Refrigerante 2L", 15.0, 10),
+            new ProdutoModel("6. Pizza Chocolate", 32.0, 10)
         ));
 
          rest3 = new RestaurantModel("Mania de Churrasco", "Rua do Churrasco, 789", 40028924, null);
@@ -39,7 +40,7 @@ public class RestauranteService {
             new ProdutoModel("4. Espetinho de Queijo Coalho", 25.0, 10),
             new ProdutoModel("5. Refrigerante 2L", 15.0, 10)
         ));
-         rest4 = new RestaurantModel("Burguer King", "Avenida dos Burgers, 321", 40028925, null);
+         rest4 = new RestaurantModel(AZUL_ESCURO + "Burguer King" + RESET, "Avenida dos Burgers, 321", 40028925, null);
          rest4.setcatalogo(List.of(
             new ProdutoModel("1. Whopper", 25.0, 10),
             new ProdutoModel("2. Big King", 30.0, 10),

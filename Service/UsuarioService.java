@@ -19,8 +19,8 @@ public class UsuarioService {
         Scanner sc = new Scanner(System.in);
 
         public boolean registerUser() {
-            // Tela de Cadastro
             
+            // Tela de Cadastro
             System.out.println(BRANCO + "\n     === ÁREA DE CADASTRO ===     " + RESET);
             System.out.println(VERDE_ESCURO + "──────────────────────────────────────────" + RESET);
             System.out.print(AZUL + "\n  Digite seu nome de usuário: " + RESET);
@@ -30,7 +30,6 @@ public class UsuarioService {
             String phoneNumber = sc.nextLine();
             System.out.println("──────────────────────────────────────────");
             System.out.print(AZUL + "  Digite seu email: " + RESET);
-            
             String email = sc.nextLine();
             System.out.println("──────────────────────────────────────────");
             System.out.print(AZUL + "  Digite sua senha: " + RESET);

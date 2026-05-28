@@ -1,6 +1,6 @@
 package Models;
-import java.util.List;
 import java.util.ArrayList;
+import java.util.List;
 
 public class UserModel {
     private String username;
@@ -67,8 +67,6 @@ public class UserModel {
         this.metodoPagamento = metodoPagamento;
     }
     
-
-
     // Não pensei nessa logica, gpt ajudou a criar / abriu minha mente 
     public List<List<ProdutosERestaurant>> getHistoricoPedidos() {
         // Lógica para retornar o histórico de pedidos do usuário
