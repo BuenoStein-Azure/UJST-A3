@@ -2,12 +2,12 @@ package Service;
 import static Service.UsuarioService.BRANCO;
 import static Service.UsuarioService.RESET;
 import static Service.UsuarioService.VERDE_ESCURO;
-import java.util.Scanner;
+import Util.AppScanner;
 
 public class MenuInicialService {
 
     public boolean exibirMenuEntrada() {
-        Scanner sc = new Scanner(System.in);
+        
         AutenticacaoService loginService = new AutenticacaoService();
         UsuarioService userService = new UsuarioService();
 
@@ -17,20 +17,18 @@ public class MenuInicialService {
         System.out.println(BRANCO + "  1." + RESET + " Fazer login");
         System.out.println(BRANCO + "  2." + RESET + " Criar nova conta");
         System.out.println(BRANCO + "  3." + RESET + " Sair");
-        switch (sc.nextInt()) {
+        switch (AppScanner.get().nextInt()) {
             case 1:
-
+                AppScanner.get().nextLine(); // limpa o \n sobrando
                 boolean logado = loginService.login();
                 if(logado == true) {
                     System.out.println("\n  Estamos de Redirecionando para o Menu de Opcões..."); 
-                    MenuOpcaoService menuOpcaoService = new MenuOpcaoService(new RestauranteService());
+                    MenuOpcaoService menuOpcaoService = new MenuOpcaoService();
                     menuOpcaoService.exibirMenu();
-                    sc.close();
                     return true;
                     
                 } else {
                     System.out.println("\n  Login falhou. Redirecionando para o menu inicial...");
-                    sc.close();
                     return  exibirMenuEntrada();
                 }
                     
@@ -41,22 +39,18 @@ public class MenuInicialService {
                     System.out.println("\n  Estamos te Redirecionando para o menu inicial...");
                     exibirMenuEntrada();
                     userService.listarUsuarios();
-                    sc.close();
                     return true;
 
                 } else {
                     System.out.println("\n  Registro falhou. Redirecionando para o menu inicial...");
-                    sc.close();
                     return exibirMenuEntrada();
                 }
             case 3:
                 System.out.println("\n Obrigado por usar nosso app!");
-                sc.close();
                 return false;
 
             default:
                 System.out.println("\n    Opção inválida. Encerrando o programa.");
-                sc.close();
                 return false;       
         }  
     }

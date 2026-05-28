@@ -1,16 +1,13 @@
 package Service;
 import static Service.UsuarioService.BRANCO;
 import static Service.UsuarioService.RESET;
-import java.util.Scanner;
+import Util.AppScanner;
 
 public class MenuOpcaoService {
 
-    private RestauranteService restaurantService;
-    public MenuOpcaoService(RestauranteService restaurantService) {
-        this.restaurantService = restaurantService;
-    }
+    
     public void exibirMenu() {
-        Scanner sc = new Scanner(System.in);
+        
        
         System.out.println("\n    Oque deseja fazer?");
         System.out.println(BRANCO + "    1." + RESET + " Fazer um pedido");
@@ -18,7 +15,7 @@ public class MenuOpcaoService {
         System.out.println(BRANCO + "    3." + RESET + " Voltar ao menu principal");
         System.out.print("    Escolha uma opção: ");
 
-        switch (sc.nextInt()) {
+        switch (AppScanner.get().nextInt()) {
             case 1:
                 MenuRestauranteService menuRestauranteService = new MenuRestauranteService(new RestauranteService());
                 menuRestauranteService.Menu();
@@ -35,6 +32,6 @@ public class MenuOpcaoService {
             default:
                 break;
         }
-        sc.close();    
+          
     }
 }

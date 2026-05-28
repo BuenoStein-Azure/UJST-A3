@@ -2,7 +2,7 @@ package Service;
 import Models.*;
 import static Service.UsuarioService.*;
 import java.util.List;
-import java.util.Scanner;
+import Util.AppScanner;
 
 public class MenuRestauranteService {
     private RestauranteService restaurantService; 
@@ -10,7 +10,6 @@ public class MenuRestauranteService {
         this.restaurantService = restaurantService;
     }        
         public void Menu(){
-            Scanner sc = new Scanner(System.in);
             boolean continuarPedindo = true;
             while (continuarPedindo) {
             System.out.println(BRANCO + "\n             === RESTAURANTES DISPONÍVEIS ===     " + RESET);
@@ -23,7 +22,7 @@ public class MenuRestauranteService {
             System.out.print("    Escolha o restaurante: ");
 
             // REFAZENDO LOGICA INTEIRA PQ TINHA MUITO CODIGO DUPLICADO, tava dando agonia de tanto codigo repetido, entao decidi refazer a logica inteira, agora tem muito menos codigo e é mais facil de ler.
-            int opcaoRestaurante = sc.nextInt();
+            int opcaoRestaurante = AppScanner.get().nextInt();
             
             if(opcaoRestaurante == 0){
                 CarrinhoService carrinhoService = new CarrinhoService(UsuarioService.currentUser);
@@ -52,7 +51,7 @@ public class MenuRestauranteService {
             while(continuarNesteRestaurante){
                 RestauranteService.exibirCatalogo(restaurantSelecinado);
                 System.out.print("\n  Digite a opção do produto que deseja adicionar ao carrinho (0 para voltar): ");
-                int opcaoProduto = sc.nextInt();
+                int opcaoProduto = AppScanner.get().nextInt();;
 
                 // Verifica se o usuario quer voltar para a escolha do restaurante
                 if(opcaoProduto == 0){
@@ -71,7 +70,7 @@ public class MenuRestauranteService {
                 
                 // pergunta quantidade
                 System.out.print("\n  Digite a quantidade que deseja adicionar ao carrinho: ");
-                int quantidade = sc.nextInt();
+                int quantidade = AppScanner.get().nextInt();
                 if(quantidade < 1){
                     System.out.println("\n  Quantidade inválida! Digite um número maior que 0.");
                     continue; 
@@ -87,7 +86,7 @@ public class MenuRestauranteService {
                 System.out.println(BRANCO + "    3 -" + RESET + " Finalizar compra");
                 System.out.print("    Escolha: ");
 
-                int escolha = sc.nextInt();
+                int escolha = AppScanner.get().nextInt();
                 switch (escolha) {
                     case 1:
                         break; // simplesmente continua o loop interno (fica no mesmo restaurante)
@@ -106,6 +105,6 @@ public class MenuRestauranteService {
                 }
             }
         }
-        sc.close();
+        
     }
 }

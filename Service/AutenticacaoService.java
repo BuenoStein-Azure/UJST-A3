@@ -1,18 +1,18 @@
 package Service;
 import static Service.UsuarioService.*;
-import java.util.Scanner;
+import Util.AppScanner;
 
 public class AutenticacaoService {
 
-    Scanner sc = new Scanner(System.in);
+
     public boolean login() {
         System.out.println(BRANCO + "\n     === ÁREA DE LOGIN ===     " + RESET);
                 System.out.println(VERDE_ESCURO + "──────────────────────────────────────────" + RESET);
                 System.out.print(AZUL + "\n  Digite seu nome de usuário: " + RESET);
-                String username = sc.nextLine();
+                String username = AppScanner.get().nextLine();
                 System.out.println("──────────────────────────────────────────");
                 System.out.print(AZUL + "  Digite sua senha: " + RESET);
-                String password = sc.nextLine();
+                String password = AppScanner.get().nextLine();
                 System.out.println("──────────────────────────────────────────");
                 // Verificar as credenciais do usuário
                 boolean loginSuccess = false;

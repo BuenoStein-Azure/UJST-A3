@@ -4,10 +4,11 @@ import static Service.UsuarioService.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
+import Util.AppScanner;
 
 public class CarrinhoService {
     private UserModel user;
-    private Scanner sc = new Scanner(System.in);
+   
    
     public CarrinhoService(UserModel user) {
         this.user = user;
@@ -101,22 +102,29 @@ public class CarrinhoService {
                 + "    4 - VR / VA\n"
                 + "    Escolha: ");
     
-        switch (sc.nextInt()) {
+        switch (AppScanner.get().nextInt()) {
             case 1:
                 System.out.println("\n    Você escolheu pagar com Cartão de Debito.");
                 processarCartao("débito");
+                confirmarEFecharPedido(); 
+                new MenuOpcaoService().exibirMenu();
                 break;
-                            
+
              case 2:
                 System.out.println("\n    Você escolheu pagar com Cartão de Crédito.");
                 processarCartao("crédito");
+                confirmarEFecharPedido();
+                new MenuOpcaoService().exibirMenu();
+
                 break;
                         
             case 3:
                 System.out.println("\n    Você escolheu pagar com Pix.");
                 GeradorPixService geradorPixService = new GeradorPixService();
                 geradorPixService.gerarChavePix();
-                confirmarEFecharPedido();            
+                confirmarEFecharPedido();
+                new MenuOpcaoService().exibirMenu();
+            
                 break;
                         
             case 4:
@@ -124,6 +132,8 @@ public class CarrinhoService {
                 // VR/VA não precisa entrar no metodo de pagamento pq o VR/VA é instantaneo.
                 System.out.println("\n    Finalizando compra com VR/VA...");
                 confirmarEFecharPedido();
+                new MenuOpcaoService().exibirMenu();
+
                 break;
 
                     }
@@ -133,12 +143,14 @@ public class CarrinhoService {
         if (user.getMetodoPagamento() == null) {
             System.out.println("\n    Você não possui cartão cadastrado.");
             System.out.print("    Deseja cadastrar agora? (1 - Sim / 2 - Não): ");
-            if (sc.nextInt() == 1) {
+            if (AppScanner.get().nextInt() == 1) {
                 MetodosDePagamento mp = new MetodosDePagamento();
                 if (tipo.equals("débito")) {
                     mp.cadastroMetodoPagamentoDebito();
+                    
                 } else {
                     mp.cadastroMetodoPagamentoCredito();
+                    
                 }
             } else {
                 System.out.println(VERMELHO + "\n    Pagamento cancelado." + RESET);
@@ -150,17 +162,17 @@ public class CarrinhoService {
                 System.out.println("    - " + cartao);
             }
             System.out.println("\n    Deseja finalizar a compra com um desses cartões? (1 - Sim / 2 - Não): ");
-            if (sc.nextInt() == 1) {
+            if (AppScanner.get().nextInt() == 1) {
                 System.out.println("\n Escolha o cartão que deseja usar para finalizar a compra: ");
                 ArrayList<Object> cartoes = new ArrayList<>(user.getMetodoPagamento());
                 for (int i = 0; i < cartoes.size(); i++) {
                     System.out.println((i + 1) + " - " + cartoes.get(i));
                 }
                 System.out.print("    Opção: ");
-                int opcao = sc.nextInt();
+                int opcao = AppScanner.get().nextInt();
                 if (opcao >= 1 && opcao <= cartoes.size()) {
                     System.out.println("\n    Finalizando compra com cartão de " + tipo + "...");
-                    confirmarEFecharPedido();
+                    
                 } else {
                     System.out.println("\n    Opção inválida.");
                     return;
@@ -170,24 +182,11 @@ public class CarrinhoService {
                 System.out.println("\n    Redirecionando para a tela de pagamento...");
                 finalizarCompra();
                 return;
-                }
+               
             }
-        if (user.getMetodoPagamento() != null && user.getMetodoPagamento().get(1) != null) {
-            System.out.println("\n Você possui apenas o seguinte cartão cadastrado: " + user.getMetodoPagamento().get(0));
-            System.out.println("\n  Deseja finalizar a compra com este cartão? (1 - Sim / 2 - Não): ");
-        if (sc.nextInt() == 1) {
-            System.out.println("\n    Finalizando compra com cartão de " + tipo + "...");
-            confirmarEFecharPedido();
-        } else {
-            System.out.println(VERMELHO +  "\n    Pagamento cancelado." + RESET);
-            System.out.println("\n    Redirecionando para a tela de pagamento...");
-            finalizarCompra();
-            return;
-                }
-            }
-        
-        confirmarEFecharPedido();
+            
         }
+    }
 
     private void imprimirItensDaLista(List<ProdutosERestaurant> lista) {
     double total = 0;
@@ -206,7 +205,7 @@ public class CarrinhoService {
     }
 
 
-     private void confirmarEFecharPedido() {
+    private void confirmarEFecharPedido() {
         double total = user.getCarrinho().stream()
                 .flatMap(c -> c.getProdutos().stream())
                 .mapToDouble(ProdutoModel::getPreco)
@@ -215,6 +214,13 @@ public class CarrinhoService {
         System.out.printf("    Valor total cobrado: R$ %.2f%n", total);
         System.out.println("\n    Obrigado pela preferência! Seu pedido está a caminho. 🚀");
         System.out.println(VERDE_ESCURO + "──────────────────────────────────────────" + RESET);
+    
+        // salva o pedido no histórico antes de limpar
+        if (user.getHistoricoPedidos() == null) {
+            user.adicionarPedidoAoHistorico(new ArrayList<>());
+        }
+        user.getHistoricoPedidos().add(new ArrayList<>(user.getCarrinho()));
+    
         // limpa o carrinho após o pagamento
         user.setCarrinho(new ArrayList<>());
     }
