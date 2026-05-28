@@ -1,8 +1,4 @@
-import Models.*;
 import Service.*;
-
-import java.util.List;
-import java.util.Scanner;
 
 public class NextFood {
 
@@ -11,10 +7,10 @@ public class NextFood {
     static final String VERDE_ESCURO = "\033[1;32m";
     static final String AZUL    = "\033[36m";
     static final String BRANCO = "\033[97m";
+    static final String VERMELHO = "\033[31m";
+    static final String AMARELO = "\033[33m";
+    static final String AZUL_ESCURO = "\033[34m";
     private MenuInicialService menuInicialService;
-    
-
-
 
     // Banner da aplicação
     static void exibirBanner() {

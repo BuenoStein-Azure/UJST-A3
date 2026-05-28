@@ -1,8 +1,8 @@
 package Service;
 import Models.*;
-
-import java.util.List;
+import static Service.UsuarioService.*;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class CarrinhoService {
@@ -49,8 +49,8 @@ public class CarrinhoService {
             return; // Verifica se o carrinho do usuário é nulo ou vazio e exibe mensagem apropriada
         }
  
-         System.out.println("\n     === CARRINHO ATUAL ===     ");
-        System.out.println("──────────────────────────────────────────");
+         System.out.println(BRANCO + "\n     === CARRINHO ATUAL ===     " + RESET);
+        System.out.println(VERDE_ESCURO + "──────────────────────────────────────────" + RESET);
         imprimirItensDaLista(user.getCarrinho());
 
     }
@@ -66,16 +66,16 @@ public class CarrinhoService {
             return;
         }
 
-        System.out.println("\n     === HISTÓRICO DE PEDIDOS ===     ");
-        System.out.println("══════════════════════════════════════════");
+        System.out.println(BRANCO + "\n     === HISTÓRICO DE PEDIDOS ===     " + RESET);
+        System.out.println(VERDE_ESCURO + "════════════════════════════════════════════════" + RESET);
  
         for (int p = 0; p < historico.size(); p++) {
             System.out.printf("%n  Pedido #%d%n", p + 1);
-            System.out.println("──────────────────────────────────────────");
+            System.out.println(VERDE_ESCURO + "──────────────────────────────────────────" + RESET);
             imprimirItensDaLista(historico.get(p));
         }
  
-        System.out.println("══════════════════════════════════════════");
+        System.out.println(VERDE_ESCURO + "═══════════════════════════════════════════════" + RESET);
     }
     
 // ver dps
@@ -131,8 +131,7 @@ public class CarrinhoService {
                 break;
 
                     }
-    
-                            }
+            }
 
     
     private void processarCartao(String tipo) {
@@ -147,7 +146,7 @@ public class CarrinhoService {
                     mp.cadastroMetodoPagamentoCredito();
                 }
             } else {
-                System.out.println("\n    Pagamento cancelado.");
+                System.out.println(VERMELHO + "\n    Pagamento cancelado." + RESET);
                 return;
             }
         } else {
@@ -172,12 +171,12 @@ public class CarrinhoService {
                     return;
                 }
             } else {
-                System.out.println("\n    Pagamento cancelado.");
+                System.out.println(VERMELHO + "\n    Pagamento cancelado." + RESET);
                 System.out.println("\n    Redirecionando para a tela de pagamento...");
                 finalizarCompra();
                 return;
+                }
             }
-        }
         if (user.getMetodoPagamento() != null && user.getMetodoPagamento().get(1) != null) {
             System.out.println("\n Você possui apenas o seguinte cartão cadastrado: " + user.getMetodoPagamento().get(0));
             System.out.println("\n  Deseja finalizar a compra com este cartão? (1 - Sim / 2 - Não): ");
@@ -185,15 +184,15 @@ public class CarrinhoService {
             System.out.println("\n    Finalizando compra com cartão de " + tipo + "...");
             confirmarEFecharPedido();
         } else {
-            System.out.println("\n    Pagamento cancelado.");
+            System.out.println(VERMELHO +  "\n    Pagamento cancelado." + RESET);
             System.out.println("\n    Redirecionando para a tela de pagamento...");
             finalizarCompra();
             return;
-        }
-        }
+                }
+            }
         
         confirmarEFecharPedido();
-    }
+        }
 
     private void imprimirItensDaLista(List<ProdutosERestaurant> lista) {
     double total = 0;
@@ -204,12 +203,12 @@ public class CarrinhoService {
 
         System.out.printf("    %d. %s [%s]  R$ %.2f%n", i + 1, p.getNome(), restaurante, p.getPreco());
         total += p.getPreco();
-    }
+        }
 
-    System.out.println("──────────────────────────────────────────");
+    System.out.println(VERDE_ESCURO + "──────────────────────────────────────────" + RESET);
     System.out.printf("    Total: R$ %.2f%n", total);
-    System.out.println("──────────────────────────────────────────");
-}
+    System.out.println(VERDE_ESCURO + "──────────────────────────────────────────" + RESET);
+    }
 
 
      private void confirmarEFecharPedido() {
@@ -220,10 +219,8 @@ public class CarrinhoService {
         System.out.printf("%n    ✔ Pagamento confirmado!%n");
         System.out.printf("    Valor total cobrado: R$ %.2f%n", total);
         System.out.println("\n    Obrigado pela preferência! Seu pedido está a caminho. 🚀");
-        System.out.println("──────────────────────────────────────────");
+        System.out.println(VERDE_ESCURO + "──────────────────────────────────────────" + RESET);
         // limpa o carrinho após o pagamento
         user.setCarrinho(new ArrayList<>());
-
-
-}
+    }
 }

@@ -1,5 +1,5 @@
 package Service;
-import java.util.Scanner;
+import static Service.UsuarioService.VERDE_ESCURO;
 import java.util.Random;
 
 public class GeradorPixService {
@@ -17,10 +17,10 @@ public class GeradorPixService {
         }
 
         System.out.println("\n    Chave Pix gerada com sucesso!");
-        System.out.println("──────────────────────────────────────────");
+        System.out.println(VERDE_ESCURO + "──────────────────────────────────────────" + RESET);
         System.out.println("\n    Copie e cole no seu aplicativo do banco:");
         System.out.println("\n    Chave Pix: " + chavePix);
-        System.out.println("──────────────────────────────────────────");
+        System.out.println(VERDE_ESCURO + "──────────────────────────────────────────" + RESET);
 
         // inicio da função (vi um video daora disso e apliquei a logica)
         boolean pago = false;
@@ -38,7 +38,7 @@ public class GeradorPixService {
                 } catch (Exception e) { //
                     e.printStackTrace();
                 }   
-                System.out.println("\n    Pagamento Pix finalizado com sucesso!");
+                System.out.println(VERDE_ESCURO + "\n    Pagamento Pix finalizado com sucesso!" + RESET);
             }
              
         }

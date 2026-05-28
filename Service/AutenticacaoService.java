@@ -1,22 +1,13 @@
 package Service;
-import static Service.UsuarioService.users;
-
+import static Service.UsuarioService.*;
 import java.util.Scanner;
-import Models.*;
-import Service.*;
-
 
 public class AutenticacaoService {
-    static final String RESET   = "\033[0m";
-    static final String VERDE_ESCURO = "\033[1;32m";
-    static final String AZUL    = "\033[36m";
-    static final String BRANCO = "\033[97m";
-    
 
     Scanner sc = new Scanner(System.in);
     public boolean login() {
-        System.out.println("\n     === ÁREA DE LOGIN ===     ");
-                System.out.println("──────────────────────────────────────────");
+        System.out.println(BRANCO + "\n     === ÁREA DE LOGIN ===     " + RESET);
+                System.out.println(VERDE_ESCURO + "──────────────────────────────────────────" + RESET);
                 System.out.print(AZUL + "\n  Digite seu nome de usuário: " + RESET);
                 String username = sc.nextLine();
                 System.out.println("──────────────────────────────────────────");
@@ -33,14 +24,11 @@ public class AutenticacaoService {
                     }
                 }
                 if (loginSuccess == true) {
-                    System.out.println("\n    Bem-vindo(a), " + username + "!");
+                    System.out.println("\n    Bem-vindo(a), " +  BRANCO + username + RESET + "!");
                     
-
                 } else {
-                    System.out.println("\n    Acesso negado. Verifique seu nome de usuário e senha.");
+                    System.out.println(VERMELHO + "\n    Acesso negado." + RESET + " Verifique seu nome de usuário e senha.");
                 }
                 return loginSuccess;
-    }
-    
-    
+    }    
 }

@@ -1,24 +1,22 @@
 package Service;
-import Models.*;
-import Service.*;
-
-
+import static Service.UsuarioService.BRANCO;
+import static Service.UsuarioService.RESET;
+import static Service.UsuarioService.VERDE_ESCURO;
 import java.util.Scanner;
 
 public class MenuInicialService {
-
 
     public boolean exibirMenuEntrada() {
         Scanner sc = new Scanner(System.in);
         AutenticacaoService loginService = new AutenticacaoService();
         UsuarioService userService = new UsuarioService();
 
-        System.out.println("\n      === BEM-VINDO AO NEXTFOOD ===     ");
-        System.out.println("──────────────────────────────────────────");
+        System.out.println(BRANCO + "\n      === BEM-VINDO AO NEXTFOOD ===     " + RESET);
+        System.out.println(VERDE_ESCURO + "──────────────────────────────────────────" + RESET);
         System.out.println("  O que deseja fazer?");
-        System.out.println("  1. Fazer login");
-        System.out.println("  2. Criar nova conta");
-        System.out.println("  3. Sair");
+        System.out.println(BRANCO + "  1." + RESET + " Fazer login");
+        System.out.println(BRANCO + "  2." + RESET + " Criar nova conta");
+        System.out.println(BRANCO + "  3." + RESET + " Sair");
         switch (sc.nextInt()) {
             case 1:
 
@@ -61,11 +59,7 @@ public class MenuInicialService {
             default:
                 System.out.println("\n    Opção inválida. Encerrando o programa.");
                 sc.close();
-                return false;
-                
-        }
-       
+                return false;       
+        }  
     }
-    
-    
 }
