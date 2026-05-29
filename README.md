@@ -27,6 +27,8 @@ Este repositório contém o desenvolvimento do projeto **NextFood**, elaborado c
 | Ryan Gomes dos Santos  | 8261102012 |
 | Daniel Magalhães Pereira Dos Santos  | 8261104325 |
 | Gabriel Ramos do Nascimento | 826176212 |
+| Arthur Leite da Silva | 826113097 |
+| Henrique Alberto Midega
 
 ## Diagrama de Classes
 
