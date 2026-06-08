@@ -8,7 +8,8 @@ import Util.AppScanner;
 
 public class CarrinhoService {
     private UserModel user;
-   
+    private double descontoCupom = 0.0; // Percentual de desconto aplicado pelo cupom (ex: 0.10 = 10%)
+
    
     public CarrinhoService(UserModel user) {
         this.user = user;
@@ -92,6 +93,9 @@ public class CarrinhoService {
             System.out.println("\n    Adicione produtos antes de finalizar a compra.");
             return;
         }
+
+        // Pergunta se o usuário tem cupom de desconto antes de exibir as formas de pagamento
+        aplicarCupom();
 
         System.out.println(BRANCO + "\n     === ÁREA DE PAGAMENTO ===     " + RESET);
         System.out.println(VERDE_ESCURO + "──────────────────────────────────────────" + RESET);
@@ -210,8 +214,19 @@ public class CarrinhoService {
                 .flatMap(c -> c.getProdutos().stream())
                 .mapToDouble(ProdutoModel::getPreco)
                 .sum();
-        System.out.printf(VERDE_ESCURO + "%n    ✔ Pagamento confirmado!%n" + RESET);
-        System.out.printf("    Valor total cobrado: R$ %.2f%n", total);
+
+        // Aplica o desconto do cupom caso tenha sido informado
+        if (descontoCupom > 0) {
+            double valorDesconto = total * descontoCupom;
+            double totalComDesconto = total - valorDesconto;
+            System.out.printf(AMARELO + "%n    🏷 Cupom aplicado! Desconto de %.0f%%: -R$ %.2f" + RESET + "%n", descontoCupom * 100, valorDesconto);
+            System.out.printf(VERDE_ESCURO + "%n    ✔ Pagamento confirmado!%n" + RESET);
+            System.out.printf("    Valor total cobrado: R$ %.2f%n", totalComDesconto);
+        } else {
+            System.out.printf(VERDE_ESCURO + "%n    ✔ Pagamento confirmado!%n" + RESET);
+            System.out.printf("    Valor total cobrado: R$ %.2f%n", total);
+        }
+
         System.out.println("\n    Obrigado pela preferência! Seu pedido está a caminho. 🚀");
         System.out.println(VERDE_ESCURO + "──────────────────────────────────────────" + RESET);
     
@@ -223,5 +238,23 @@ public class CarrinhoService {
     
         // limpa o carrinho após o pagamento
         user.setCarrinho(new ArrayList<>());
+    }
+
+    // Pergunta ao usuário se possui cupom de desconto e valida o código informado
+    private void aplicarCupom() {
+        descontoCupom = 0.0; // Reseta o desconto a cada compra
+        System.out.println(VERDE_ESCURO + "──────────────────────────────────────────" + RESET);
+        System.out.print("\n    Possui cupom de desconto? (1 - Sim / 2 - Não): ");
+        if (AppScanner.get().nextInt() == 1) {
+            AppScanner.get().nextLine(); // Consome o '\n' deixado pelo nextInt()
+            System.out.print("    Digite o cupom: ");
+            String cupom = AppScanner.get().nextLine().trim();
+            if (cupom.equalsIgnoreCase("macion10")) {
+                descontoCupom = 0.10; // 10% de desconto
+                System.out.println(AMARELO + "\n    ✔ Cupom \"macion10\" aplicado! Você ganhou 10% de desconto." + RESET);
+            } else {
+                System.out.println(VERMELHO + "\n    Cupom inválido. Nenhum desconto será aplicado." + RESET);
+            }
+        }
     }
 }
