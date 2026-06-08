@@ -259,9 +259,9 @@ public class CarrinhoService {
             AppScanner.get().nextLine(); // Consome o '\n' deixado pelo nextInt()
             System.out.print("    Digite o cupom: ");
             String cupom = AppScanner.get().nextLine().trim();
-            if (cupom.equalsIgnoreCase("macion10")) {
+            if (cupom.equalsIgnoreCase("machion10")) {
                 descontoCupom = 0.10; // 10% de desconto
-                System.out.println(AMARELO + "\n    [OK] Cupom \"macion10\" aplicado! Voce ganhou 10% de desconto." + RESET);
+                System.out.println(AMARELO + "\n    [OK] Cupom \"machion10\" aplicado! Voce ganhou 10% de desconto." + RESET);
             } else {
                 System.out.println(VERMELHO + "\n    Cupom inválido. Nenhum desconto será aplicado." + RESET);
             }
