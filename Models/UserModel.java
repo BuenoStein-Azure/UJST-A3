@@ -9,17 +9,18 @@ public class UserModel {
     private String phoneNumber;
     private List<ProdutosERestaurant> carrinho = null;
     private List<Object> metodoPagamento = null;
+    private double taxaEntrega;
     
     private List<List<ProdutosERestaurant>> historicoPedidos = new ArrayList<>();
 
-    public UserModel(String username, String password, String email, String phoneNumber, List<ProdutosERestaurant> carrinho, List<Object> metodoPagamento) {
+    public UserModel(String username, String password, String email, String phoneNumber, List<ProdutosERestaurant> carrinho, List<Object> metodoPagamento, double taxaEntrega) {
         this.username = username;
         this.password = password;
         this.email = email;
         this.phoneNumber = phoneNumber;
         this.carrinho = carrinho;
         this.metodoPagamento = metodoPagamento;
-
+        this.taxaEntrega = taxaEntrega;
     }
 
     public String getUsername() {
@@ -66,7 +67,14 @@ public class UserModel {
     public void setMetodoPagamento(List<Object> metodoPagamento) {
         this.metodoPagamento = metodoPagamento;
     }
-    
+
+    public double getTaxaEntrega() {
+    return taxaEntrega;
+    }
+    public void setTaxaEntrega(double taxaEntrega) {
+        this.taxaEntrega = taxaEntrega;
+    }
+
     // Não pensei nessa logica, gpt ajudou a criar / abriu minha mente 
     public List<List<ProdutosERestaurant>> getHistoricoPedidos() {
         // Lógica para retornar o histórico de pedidos do usuário

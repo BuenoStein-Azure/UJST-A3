@@ -10,17 +10,17 @@ public class MetodosDePagamento {
     public void cadastroMetodoPagamentoDebito(){
         
         System.out.println(BRANCO + "\n   == Cadastro de Cartão de Débito ==" + RESET);
-        System.out.println(VERDE_ESCURO + "──────────────────────────────────────────" + RESET);
+        System.out.println(VERDE_ESCURO + "------------------------------------------" + RESET);
         // Lógica para cadastrar o método de pagamento de cartão de débito
         System.out.println("\n    Digite o número do cartão de débito: ");
         String numeroCartao = AppScanner.get().nextLine();
-        System.out.println(VERDE_ESCURO + "──────────────────────────────────────────" + RESET);
+        System.out.println(VERDE_ESCURO + "------------------------------------------" + RESET);
         System.out.println(VERDE_ESCURO + "\n    Digite a data de validade do cartão (MM/AA): " + RESET);
         String dataValidade = AppScanner.get().nextLine();
-        System.out.println(VERDE_ESCURO + "──────────────────────────────────────────" + RESET);
+        System.out.println(VERDE_ESCURO + "------------------------------------------" + RESET);
         System.out.println("\n    Digite o código de segurança do cartão: ");
         String codigoSeguranca = AppScanner.get().nextLine();
-        System.out.println(VERDE_ESCURO + "──────────────────────────────────────────" + RESET);
+        System.out.println(VERDE_ESCURO + "------------------------------------------" + RESET);
         
         // Aqui você pode adicionar a lógica para salvar o cartão de débito, como associá-lo ao usuário logado
         UserModel user = UsuarioService.currentUser; // Obtém o usuário atualmente logado
@@ -43,17 +43,17 @@ public class MetodosDePagamento {
     }
     public void cadastroMetodoPagamentoCredito(){
         System.out.println(BRANCO + "\n   == Cadastro de Cartão de Crédito ==" + RESET);
-        System.out.println(VERDE_ESCURO + "──────────────────────────────────────────" + RESET);
+        System.out.println(VERDE_ESCURO + "------------------------------------------" + RESET);
         // Lógica para cadastrar o método de pagamento de cartão de crédito
         System.out.println("\n    Digite o número do cartão de crédito: ");
         String numeroCartao = AppScanner.get().nextLine();
-        System.out.println(VERDE_ESCURO + "──────────────────────────────────────────" + RESET);
+        System.out.println(VERDE_ESCURO + "------------------------------------------" + RESET);
             System.out.println("\n    Digite a data de validade do cartão (MM/AA): ");
         String dataValidade = AppScanner.get().nextLine();
-        System.out.println(VERDE_ESCURO + "──────────────────────────────────────────" + RESET);
+        System.out.println(VERDE_ESCURO + "------------------------------------------" + RESET);
         System.out.println("\n    Digite o código de segurança do cartão: ");
         String codigoSeguranca = AppScanner.get().nextLine();
-        System.out.println(VERDE_ESCURO + "──────────────────────────────────────────" + RESET);
+        System.out.println(VERDE_ESCURO + "------------------------------------------" + RESET);
        
         // Aqui você pode adicionar a lógica para salvar o cartão de crédito, como associá-lo ao usuário logado
         UserModel user = UsuarioService.currentUser; // Obtém o usuário atualmente logado

@@ -9,7 +9,7 @@ import Util.AppScanner;
 public class CarrinhoService {
     private UserModel user;
     private double descontoCupom = 0.0; // Percentual de desconto aplicado pelo cupom (ex: 0.10 = 10%)
-
+    private double taxaEntrega = 5.0;
    
     public CarrinhoService(UserModel user) {
         this.user = user;
@@ -30,7 +30,7 @@ public class CarrinhoService {
          for (int i = 0; i < quantidade; i++) {
             user.getCarrinho().add(new ProdutosERestaurant(List.of(produto), List.of(restaurant)));
         }
-        System.out.printf(VERDE_ESCURO + "%n    ✔ %dx %s adicionado(s) ao carrinho!" + RESET + " (R$ %.2f cada)%n",
+        System.out.printf(VERDE_ESCURO + "%n    [OK] %dx %s adicionado(s) ao carrinho!" + RESET + " (R$ %.2f cada)%n",
                 quantidade, produto.getNome(), produto.getPreco());
         
 
@@ -50,7 +50,7 @@ public class CarrinhoService {
         }
  
          System.out.println(BRANCO + "\n     === CARRINHO ATUAL ===     " + RESET);
-        System.out.println(VERDE_ESCURO + "──────────────────────────────────────────" + RESET);
+        System.out.println(VERDE_ESCURO + "------------------------------------------" + RESET);
         imprimirItensDaLista(user.getCarrinho());
 
     }
@@ -67,15 +67,15 @@ public class CarrinhoService {
         }
 
         System.out.println(BRANCO + "\n     === HISTÓRICO DE PEDIDOS ===     " + RESET);
-        System.out.println(VERDE_ESCURO + "════════════════════════════════════════════════" + RESET);
+        System.out.println(VERDE_ESCURO + "==============================================" + RESET);
  
         for (int p = 0; p < historico.size(); p++) {
             System.out.printf("%n  Pedido #%d%n", p + 1);
-            System.out.println(VERDE_ESCURO + "──────────────────────────────────────────" + RESET);
+            System.out.println(VERDE_ESCURO + "------------------------------------------" + RESET);
             imprimirItensDaLista(historico.get(p));
         }
  
-        System.out.println(VERDE_ESCURO + "═══════════════════════════════════════════════" + RESET);
+        System.out.println(VERDE_ESCURO + "===============================================" + RESET);
     }
     
 // ver dps
@@ -98,7 +98,7 @@ public class CarrinhoService {
         aplicarCupom();
 
         System.out.println(BRANCO + "\n     === ÁREA DE PAGAMENTO ===     " + RESET);
-        System.out.println(VERDE_ESCURO + "──────────────────────────────────────────" + RESET);
+        System.out.println(VERDE_ESCURO + "------------------------------------------" + RESET);
         System.out.print("\n    Forma de pagamento:\n"
                 + "    1 - Cartão de Débito\n"
                 + "    2 - Cartão de Crédito\n"
@@ -192,43 +192,53 @@ public class CarrinhoService {
         }
     }
 
+    private double obterTaxaEntrega() {
+        return user != null ? user.getTaxaEntrega() : taxaEntrega;
+    }
+
     private void imprimirItensDaLista(List<ProdutosERestaurant> lista) {
-    double total = 0;
+    double subtotal = 0;
 
     for (int i = 0; i < lista.size(); i++) {
         ProdutoModel p        = lista.get(i).getProdutos().get(0);
         String restaurante    = lista.get(i).getRestaurantes().get(0).getRestaurantName();
 
         System.out.printf("    %d. %s [%s]  R$ %.2f%n", i + 1, p.getNome(), restaurante, p.getPreco());
-        total += p.getPreco();
+        subtotal += p.getPreco();
         }
 
-    System.out.println(VERDE_ESCURO + "──────────────────────────────────────────" + RESET);
+    double taxa = obterTaxaEntrega();
+    double total = subtotal + taxa;
+
+    System.out.println(VERDE_ESCURO + "------------------------------------------" + RESET);
+    System.out.printf("    Taxa de Entrega: R$ %.2f%n", taxa);
     System.out.printf("    Total: R$ %.2f%n", total);
-    System.out.println(VERDE_ESCURO + "──────────────────────────────────────────" + RESET);
+    System.out.println(VERDE_ESCURO + "------------------------------------------" + RESET);
     }
 
 
     private void confirmarEFecharPedido() {
-        double total = user.getCarrinho().stream()
+        double subtotal = user.getCarrinho().stream()
                 .flatMap(c -> c.getProdutos().stream())
                 .mapToDouble(ProdutoModel::getPreco)
                 .sum();
+        double taxa = obterTaxaEntrega();
 
         // Aplica o desconto do cupom caso tenha sido informado
         if (descontoCupom > 0) {
-            double valorDesconto = total * descontoCupom;
-            double totalComDesconto = total - valorDesconto;
-            System.out.printf(AMARELO + "%n    🏷 Cupom aplicado! Desconto de %.0f%%: -R$ %.2f" + RESET + "%n", descontoCupom * 100, valorDesconto);
-            System.out.printf(VERDE_ESCURO + "%n    ✔ Pagamento confirmado!%n" + RESET);
+            double valorDesconto = subtotal * descontoCupom;
+            double totalComDesconto = subtotal - valorDesconto + taxa;
+            System.out.printf(AMARELO + "    Cupom aplicado! Desconto de %.0f%%: -R$ %.2f" + RESET + "%n", descontoCupom * 100, valorDesconto);
+            System.out.printf(VERDE_ESCURO + "    [OK] Pagamento confirmado!%n" + RESET);
             System.out.printf("    Valor total cobrado: R$ %.2f%n", totalComDesconto);
         } else {
-            System.out.printf(VERDE_ESCURO + "%n    ✔ Pagamento confirmado!%n" + RESET);
+            double total = subtotal + taxa;
+            System.out.printf(VERDE_ESCURO + "    [OK] Pagamento confirmado!%n" + RESET);
             System.out.printf("    Valor total cobrado: R$ %.2f%n", total);
         }
 
-        System.out.println("\n    Obrigado pela preferência! Seu pedido está a caminho. 🚀");
-        System.out.println(VERDE_ESCURO + "──────────────────────────────────────────" + RESET);
+        System.out.println("\n    Obrigado pela preferencia! Seu pedido esta a caminho.");
+        System.out.println(VERDE_ESCURO + "------------------------------------------" + RESET);
     
         // salva o pedido no histórico antes de limpar
         if (user.getHistoricoPedidos() == null) {
@@ -243,7 +253,7 @@ public class CarrinhoService {
     // Pergunta ao usuário se possui cupom de desconto e valida o código informado
     private void aplicarCupom() {
         descontoCupom = 0.0; // Reseta o desconto a cada compra
-        System.out.println(VERDE_ESCURO + "──────────────────────────────────────────" + RESET);
+        System.out.println(VERDE_ESCURO + "------------------------------------------" + RESET);
         System.out.print("\n    Possui cupom de desconto? (1 - Sim / 2 - Não): ");
         if (AppScanner.get().nextInt() == 1) {
             AppScanner.get().nextLine(); // Consome o '\n' deixado pelo nextInt()
@@ -251,7 +261,7 @@ public class CarrinhoService {
             String cupom = AppScanner.get().nextLine().trim();
             if (cupom.equalsIgnoreCase("macion10")) {
                 descontoCupom = 0.10; // 10% de desconto
-                System.out.println(AMARELO + "\n    ✔ Cupom \"macion10\" aplicado! Você ganhou 10% de desconto." + RESET);
+                System.out.println(AMARELO + "\n    [OK] Cupom \"macion10\" aplicado! Voce ganhou 10% de desconto." + RESET);
             } else {
                 System.out.println(VERMELHO + "\n    Cupom inválido. Nenhum desconto será aplicado." + RESET);
             }

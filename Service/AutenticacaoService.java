@@ -7,13 +7,13 @@ public class AutenticacaoService {
 
     public boolean login() {
         System.out.println(BRANCO + "\n     === ÁREA DE LOGIN ===     " + RESET);
-                System.out.println(VERDE_ESCURO + "──────────────────────────────────────────" + RESET);
+                System.out.println(VERDE_ESCURO + "------------------------------------------" + RESET);
                 System.out.print(AZUL + "\n  Digite seu nome de usuário: " + RESET);
                 String username = AppScanner.get().nextLine();
-                System.out.println("──────────────────────────────────────────");
+                System.out.println("------------------------------------------");
                 System.out.print(AZUL + "  Digite sua senha: " + RESET);
                 String password = AppScanner.get().nextLine();
-                System.out.println("──────────────────────────────────────────");
+                System.out.println("------------------------------------------");
                 // Verificar as credenciais do usuário
                 boolean loginSuccess = false;
                 for (int i = 0; i < UsuarioService.userCount; i++) {

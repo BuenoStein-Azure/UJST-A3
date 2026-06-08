@@ -17,10 +17,10 @@ public class GeradorPixService {
         }
 
         System.out.println("\n    Chave Pix gerada com sucesso!");
-        System.out.println(VERDE_ESCURO + "──────────────────────────────────────────" + RESET);
+        System.out.println(VERDE_ESCURO + "------------------------------------------" + RESET);
         System.out.println("\n    Copie e cole no seu aplicativo do banco:");
         System.out.println("\n    Chave Pix: " + chavePix);
-        System.out.println(VERDE_ESCURO + "──────────────────────────────────────────" + RESET);
+        System.out.println(VERDE_ESCURO + "------------------------------------------" + RESET);
 
         // inicio da função (vi um video daora disso e apliquei a logica)
         boolean pago = false;

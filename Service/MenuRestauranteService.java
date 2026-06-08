@@ -13,7 +13,7 @@ public class MenuRestauranteService {
             boolean continuarPedindo = true;
             while (continuarPedindo) {
             System.out.println(BRANCO + "\n             === RESTAURANTES DISPONÍVEIS ===     " + RESET);
-            System.out.println(VERDE_ESCURO + "────────────────────────────────────────────────────" + RESET);
+            System.out.println(VERDE_ESCURO + "----------------------------------------------" + RESET);
             System.out.println(BRANCO + "    1." + VERMELHO + " McDonald's" + RESET);
             System.out.println(BRANCO + "    2." + AMARELO + " Pizza Hut" + RESET);
             System.out.println(BRANCO + "    3." + RESET + " Mania de Churrasco");

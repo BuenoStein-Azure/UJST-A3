@@ -22,23 +22,23 @@ public class UsuarioService {
             
             // Tela de Cadastro
             System.out.println(BRANCO + "\n     === ÁREA DE CADASTRO ===     " + RESET);
-            System.out.println(VERDE_ESCURO + "──────────────────────────────────────────" + RESET);
+            System.out.println(VERDE_ESCURO + "------------------------------------------" + RESET);
             System.out.print(AZUL + "\n  Digite seu nome de usuário: " + RESET);
             String username = sc.nextLine();
-            System.out.println("──────────────────────────────────────────");
+            System.out.println("------------------------------------------");
             System.out.print(AZUL + "  Digite seu número de telefone: " + RESET);
             String phoneNumber = sc.nextLine();
-            System.out.println("──────────────────────────────────────────");
+            System.out.println("------------------------------------------");
             System.out.print(AZUL + "  Digite seu email: " + RESET);
             String email = sc.nextLine();
-            System.out.println("──────────────────────────────────────────");
+            System.out.println("------------------------------------------");
             System.out.print(AZUL + "  Digite sua senha: " + RESET);
             String password = sc.nextLine();
-            System.out.println("──────────────────────────────────────────");
+            System.out.println("------------------------------------------");
 
             boolean registerUser = false;
             if (userCount < MAX_USERS) {
-                users[userCount] = new UserModel(username, password, email, phoneNumber,null,null);
+                users[userCount] = new UserModel(username, password, email, phoneNumber,null,null,5.0);
                 userCount++;
                 System.out.println("\n    Usuário registrado com sucesso!");
                 currentUser = users[userCount - 1]; // Set the current user

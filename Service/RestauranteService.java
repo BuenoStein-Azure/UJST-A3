@@ -2,6 +2,7 @@ package Service;
 import Models.*;
 import static Service.UsuarioService.*;
 import java.util.List;
+import java.util.Locale;
 public class RestauranteService {
     private static RestaurantModel rest1;
     private static RestaurantModel rest2;       
@@ -70,10 +71,10 @@ public class RestauranteService {
     public static void exibirCatalogo(RestaurantModel restaurant) {
         
         System.out.println(BRANCO + "\n     === CARDÁPIO DO " + restaurant.getRestaurantName().toUpperCase() + " ===     " + RESET);
-        System.out.println(VERDE_ESCURO + "──────────────────────────────────────────" + RESET);
+        System.out.println(VERDE_ESCURO + "------------------------------------------" + RESET);
         for (ProdutoModel produto : restaurant.getcatalogo()) {
-            System.out.printf("    %s  →  R$ %.2f%n", produto.getNome(), produto.getPreco());
+            System.out.printf(Locale.US, "    %s -> R$ %.2f%n", produto.getNome(), produto.getPreco());
         }
-        System.out.println(VERDE_ESCURO + "──────────────────────────────────────────" + RESET);
+        System.out.println(VERDE_ESCURO + "------------------------------------------" + RESET);
     }
 }

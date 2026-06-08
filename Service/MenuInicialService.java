@@ -12,7 +12,7 @@ public class MenuInicialService {
         UsuarioService userService = new UsuarioService();
 
         System.out.println(BRANCO + "\n      === BEM-VINDO AO NEXTFOOD ===     " + RESET);
-        System.out.println(VERDE_ESCURO + "──────────────────────────────────────────" + RESET);
+        System.out.println(VERDE_ESCURO + "------------------------------------------" + RESET);
         System.out.println("  O que deseja fazer?");
         System.out.println(BRANCO + "  1." + RESET + " Fazer login");
         System.out.println(BRANCO + "  2." + RESET + " Criar nova conta");
